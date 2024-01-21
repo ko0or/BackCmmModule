@@ -43,12 +43,12 @@ public class SecurityUtil {
    }
 
    @Transactional(readOnly = true)
-   public UserDto getUserWithAuthorities(String username) {
+   public UserDto getUserDtoWithAuthorities(String username) {
       return UserDto.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
    }
 
    @Transactional(readOnly = true)
-   public UserDto getMyUserWithAuthorities() {
+   public UserDto getUserDtoWithAuthorities() {
       return UserDto.from(
               SecurityUtil.getCurrentUsername()
                       .flatMap(userRepository::findOneWithAuthoritiesByUsername)

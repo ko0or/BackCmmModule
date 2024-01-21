@@ -24,14 +24,14 @@ public class UserApi {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @Operation(summary = "현재 로그인된 나의 권한 조회")
     public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
-        return ResponseEntity.ok(securityUtil.getMyUserWithAuthorities());
+        return ResponseEntity.ok(securityUtil.getUserDtoWithAuthorities());
     }
 
     @GetMapping("{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "유저명으로 권한 조회 (운영자 기능)")
     public ResponseEntity<UserDto> getUserInfo(@PathVariable String username) {
-        return ResponseEntity.ok(securityUtil.getUserWithAuthorities(username));
+        return ResponseEntity.ok(securityUtil.getUserDtoWithAuthorities(username));
     }
 
 }
