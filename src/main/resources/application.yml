@@ -1,0 +1,36 @@
+spring:
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    defer-datasource-initialization: true
+
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 5120MB
+
+jwt: #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
+  header: Authorization
+  secret: luZsdmVybm0LWp3ZWNoLXNwcmlc2lS10ZWNyZXQtc2lsdmVybmuZy1ib290LWp3dCluZS10ZWNoLXNwcmluZy1ib2910dXRvcmlhbC1zdC10dXRvcmlhbC1zZWNyZXQK
+  token-validity-in-seconds: 28_800 # (60 * 60) * 8 = 28,800 (8시간)
+
+
+logging:
+  level:
+    back.cmm.module: debug
