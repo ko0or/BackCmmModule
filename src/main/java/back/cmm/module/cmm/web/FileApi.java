@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "File API", description = "파일 업로드, 삭제, 다운로드 및 이미지 표시")
+@Tag(name = "File API", description = "파일 업로드, 삭제, 다운로드 및 이미지 표시 (준비중..)")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/file")

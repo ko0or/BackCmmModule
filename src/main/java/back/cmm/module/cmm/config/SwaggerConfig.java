@@ -15,7 +15,7 @@ public class SwaggerConfig {
     public OpenAPI openAPI() {
         Info info = new Info().version("v1.0.0")
                 .title("Backend Common Module")
-                .description("개인 프로젝트를 할때 베이스로 사용가능한 모듈로 만든 프로젝트 : )");
+                .description("개인 프로젝트를 할 때 베이스로 사용 가능한 모듈로 만든 프로젝트 : )");
 
         String jwt = "JWT";
         SecurityRequirement securityRequirement = new SecurityRequirement().addList(jwt); // 헤더에 토큰 포함
