@@ -3,7 +3,7 @@ package back.cmm.module.cmm.controller;
 import back.cmm.module.cmm.dto.LoginDto;
 import back.cmm.module.cmm.dto.TokenDto;
 import back.cmm.module.cmm.dto.UserDto;
-import back.cmm.module.cmm.service.UserService;
+import back.cmm.module.cmm.service.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @PostMapping("login")
     @Operation(summary = "로그인 성공시 JWT 토큰 리턴")

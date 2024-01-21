@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component("userDetailsService")
 @RequiredArgsConstructor
 /* 스프링 시큐리티 로그인 로직 오버라이딩 */
-public class CustomUserDetailsService implements UserDetailsService {
+public class SecurityUserDetailsServiceImpl implements UserDetailsService {
    private final UserRepository userRepository;
 
    @Override

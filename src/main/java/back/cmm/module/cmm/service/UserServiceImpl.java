@@ -26,7 +26,7 @@ import java.util.Collections;
 @Service
 @RequiredArgsConstructor
 /* 로그인 및 회원가입 */
-public class UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
