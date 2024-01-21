@@ -1,4 +1,4 @@
-package back.cmm.module.cmm.entity;
+package back.cmm.module.cmm.domain;
 
 import lombok.*;
 
@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Authority {
+public class AuthorityBean {
 
    @Id
    @Column(name = "authority_name", length = 50)

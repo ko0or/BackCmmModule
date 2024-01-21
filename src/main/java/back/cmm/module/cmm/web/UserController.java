@@ -1,4 +1,4 @@
-package back.cmm.module.cmm.controller;
+package back.cmm.module.cmm.web;
 
 import back.cmm.module.cmm.dto.UserDto;
 import back.cmm.module.cmm.util.SecurityUtil;

@@ -1,6 +1,6 @@
 package back.cmm.module.cmm.service;
 
-import back.cmm.module.cmm.entity.User;
+import back.cmm.module.cmm.domain.UserBean;
 import back.cmm.module.cmm.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,7 +28,7 @@ public class SecurityUserDetailsServiceImpl implements UserDetailsService {
          .orElseThrow(() -> new UsernameNotFoundException(username + " -> 데이터베이스에서 찾을 수 없습니다."));
    }
 
-   private org.springframework.security.core.userdetails.User createUser(String username, User user) {
+   private org.springframework.security.core.userdetails.User createUser(String username, UserBean user) {
       if (!user.isActivated()) {
          throw new RuntimeException(username + " -> 활성화되어 있지 않습니다.");
       }

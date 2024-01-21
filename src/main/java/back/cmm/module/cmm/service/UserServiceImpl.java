@@ -3,8 +3,8 @@ package back.cmm.module.cmm.service;
 import back.cmm.module.cmm.dto.LoginDto;
 import back.cmm.module.cmm.dto.TokenDto;
 import back.cmm.module.cmm.dto.UserDto;
-import back.cmm.module.cmm.entity.Authority;
-import back.cmm.module.cmm.entity.User;
+import back.cmm.module.cmm.domain.AuthorityBean;
+import back.cmm.module.cmm.domain.UserBean;
 import back.cmm.module.cmm.exception.DuplicateMemberException;
 import back.cmm.module.cmm.jwt.JwtFilter;
 import back.cmm.module.cmm.jwt.TokenProvider;
@@ -51,11 +51,11 @@ public class UserServiceImpl implements UserService {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
-        Authority authority = Authority.builder()
+        AuthorityBean authority = AuthorityBean.builder()
                 .authorityName("ROLE_USER")
                 .build();
 
-        User user = User.builder()
+        UserBean user = UserBean.builder()
                 .username(userDto.getUsername())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .nickname(userDto.getNickname())

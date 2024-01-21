@@ -1,6 +1,6 @@
 package back.cmm.module.cmm.dto;
 
-import back.cmm.module.cmm.entity.User;
+import back.cmm.module.cmm.domain.UserBean;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -31,7 +31,7 @@ public class UserDto {
 
    private Set<AuthorityDto> authorityDtoSet;
 
-   public static UserDto from(User user) {
+   public static UserDto from(UserBean user) {
       if(user == null) return null;
 
       return UserDto.builder()

@@ -1,4 +1,4 @@
-package back.cmm.module.cmm.entity;
+package back.cmm.module.cmm.domain;
 
 import lombok.*;
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserBean {
 
    @Id
    @Column(name = "user_id")
@@ -35,5 +35,5 @@ public class User {
       name = "user_authority",
       joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
       inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
-   private Set<Authority> authorities;
+   private Set<AuthorityBean> authorities;
 }

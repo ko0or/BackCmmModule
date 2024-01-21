@@ -1,4 +1,4 @@
-package back.cmm.module.cmm.controller;
+package back.cmm.module.cmm.web;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

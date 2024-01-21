@@ -1,4 +1,4 @@
-package back.cmm.module.cmm.controller;
+package back.cmm.module.cmm.web;
 
 import back.cmm.module.cmm.dto.LoginDto;
 import back.cmm.module.cmm.dto.TokenDto;
