@@ -1,24 +1,49 @@
 package back.cmm.module.cmm.service;
 
-import java.util.Collections;
-
+import back.cmm.module.cmm.dto.LoginDto;
+import back.cmm.module.cmm.dto.TokenDto;
 import back.cmm.module.cmm.dto.UserDto;
-import back.cmm.module.cmm.entity.User;
 import back.cmm.module.cmm.entity.Authority;
+import back.cmm.module.cmm.entity.User;
 import back.cmm.module.cmm.exception.DuplicateMemberException;
-import back.cmm.module.cmm.exception.NotFoundMemberException;
-import back.cmm.module.cmm.util.SecurityUtil;
+import back.cmm.module.cmm.jwt.JwtFilter;
+import back.cmm.module.cmm.jwt.TokenProvider;
 import back.cmm.module.cmm.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+
 @Service
 @RequiredArgsConstructor
+/* 로그인 및 회원가입 */
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TokenProvider tokenProvider;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+
+    public ResponseEntity<TokenDto> login(LoginDto loginDto) {
+        UsernamePasswordAuthenticationToken authenticationToken =
+            new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = tokenProvider.createToken(authentication);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+        return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
+    }
 
     @Transactional
     public UserDto signup(UserDto userDto) {
@@ -41,17 +66,4 @@ public class UserService {
         return UserDto.from(userRepository.save(user));
     }
 
-    @Transactional(readOnly = true)
-    public UserDto getUserWithAuthorities(String username) {
-        return UserDto.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
-    }
-
-    @Transactional(readOnly = true)
-    public UserDto getMyUserWithAuthorities() {
-        return UserDto.from(
-                SecurityUtil.getCurrentUsername()
-                        .flatMap(userRepository::findOneWithAuthoritiesByUsername)
-                        .orElseThrow(() -> new NotFoundMemberException("Member not found"))
-        );
-    }
 }

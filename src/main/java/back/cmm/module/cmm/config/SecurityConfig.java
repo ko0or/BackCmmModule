@@ -47,11 +47,11 @@ public class SecurityConfig {
     };
     private static final String[] PUBLIC_ALLOW_GET_LIST = {
             "/auth/login",
-            "/auth/reg",
+            "/auth/signup",
     };
     private static final String[] PUBLIC_ALLOW_POST_LIST = {
             "/auth/login",
-            "/auth/reg",
+            "/auth/signup",
     };
 
     @Bean
