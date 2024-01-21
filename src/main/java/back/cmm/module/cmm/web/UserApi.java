@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "UserController", description = "유저 정보 조회")
+@Tag(name = "User API", description = "유저 정보 조회")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
-public class UserController {
+public class UserApi {
     private final SecurityUtil securityUtil;
 
     @GetMapping
