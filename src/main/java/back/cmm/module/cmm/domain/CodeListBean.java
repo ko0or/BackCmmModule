@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,10 @@ public class CodeListBean {
 
     @Column(name = "upr_cd_id")
     private String uprCdId;
+
+    @Column(name = "active_yn")
+    @ColumnDefault("'Y'")
+    private String activeYn;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "upr_cd_id", insertable = false, updatable = false)

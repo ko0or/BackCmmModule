@@ -37,9 +37,9 @@ public class CodeServiceImpl implements CodeService {
         codeRepository.saveAll(mapperUtil.map(dtos, CodeListBean.class));
     }
 
-//    @Override
-//    public CodeListDto readByCdId(String cdId) {
-//        return mapperUtil.map(codeRepository.findByCdId(cdId), CodeListDto.class);
-//    }
+    @Override
+    public CodeDto readByCdId(String cdId) {
+        return mapperUtil.map(codeRepository.findByCdId(cdId), CodeDto.class);
+    }
 
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ public class CodeBean {
 
     @Column(name = "upr_cd_id")
     private String uprCdId;
+
+    @Column(name = "active_yn")
+    @ColumnDefault("'Y'")
+    private String activeYn;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "upr_cd_id", insertable = false, updatable = false)

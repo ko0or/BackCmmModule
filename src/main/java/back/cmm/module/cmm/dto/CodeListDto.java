@@ -19,6 +19,7 @@ public class CodeListDto {
     private String cdDes;
     private Integer cdOrd;
     private String uprCdId;
+    private String activeYn;
     private List<CodeListDto> children = new ArrayList<>();
 
 }

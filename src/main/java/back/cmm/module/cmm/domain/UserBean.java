@@ -2,6 +2,9 @@ package back.cmm.module.cmm.domain;
 
 import lombok.*;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import java.util.Set;
 
 @Entity
@@ -27,8 +30,9 @@ public class UserBean {
    @Column(name = "nickname", length = 50)
    private String nickname;
 
-   @Column(name = "activated")
-   private boolean activated;
+   @Column(name = "active_yn", length = 1)
+   @ColumnDefault("'Y'")
+   private String activeYn;
 
    @ManyToMany
    @JoinTable(

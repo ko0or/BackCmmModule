@@ -7,13 +7,9 @@ import back.cmm.module.cmm.dto.CodeListDto;
 import java.util.List;
 
 public interface CodeService {
-    List<CodeListDto> readAll();
-
-    void save(CodeDto dto);
-
+    CodeDto readByCdId(String cdId);
     List<CodeListDto> readAllByUprCdId(String uprCdId);
-
+    List<CodeListDto> readAll();
+    void save(CodeDto dto);
     void saveAll(List<CodeDto> dtos);
-
-//    CodeListDto readByCdId(String cdId);
 }

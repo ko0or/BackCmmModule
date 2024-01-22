@@ -13,5 +13,6 @@ public interface CodeRepository extends JpaRepository<CodeListBean, String> {
 
     List<CodeListBean> findAllByUprCdId(String uprCdId);
 
-    CodeListDto findByCdId(String cdId);
+    CodeListBean findByCdId(String cdId);
+
 }

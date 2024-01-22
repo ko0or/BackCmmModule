@@ -23,5 +23,5 @@ public class CodeDto {
     @NotNull
     private Integer cdOrd;
     private String uprCdId;
-
+    private String activeYn;
 }
