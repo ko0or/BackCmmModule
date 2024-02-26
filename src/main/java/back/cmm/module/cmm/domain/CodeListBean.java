@@ -19,29 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 public class CodeListBean {
 
-/*    @Id
-    @Column(name = "cd_id", length = 10)
-    private String cdId;
-
-    @Column(name = "cd_nm")
-    private String cdNm;
-
-    @Column(name = "cd_des", length = 255)
-    private String cdDes;
-
-    @Column(name = "cd_ord")
-    private Integer cdOrd;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "upr_cd_id") // 부모 엔티티를 참조하는 데 사용
-    private CodeListBean parent;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CodeListBean> children;
-
-    @Column(name = "active_yn")
-    private String activeYn = "Y"; // 기본값 설정*/
-
     @Id
     @Column(name = "cd_id", length = 10)
     private String cdId;
@@ -55,7 +32,6 @@ public class CodeListBean {
     @Column(name = "cd_ord")
     private Integer cdOrd;
 
-    // 이 필드는 부모 엔티티의 ID를 직접 저장하기 위한 것입니다.
     @Column(name = "upr_cd_id")
     private String uprCdId;
 
@@ -70,5 +46,6 @@ public class CodeListBean {
 
     @Column(name = "active_yn")
     private String activeYn = "Y"; // 기본값 설정
+
 }
 
