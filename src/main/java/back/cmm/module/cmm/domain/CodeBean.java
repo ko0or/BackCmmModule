@@ -21,13 +21,13 @@ public class CodeBean {
     @Id @Column(name = "cd_id", length = 10)
     private String cdId;
 
-    @Column(name = "cd_nm", nullable = false)
+    @Column(name = "cd_nm")
     private String cdNm;
 
     @Column(name = "cd_des", length = 255)
     private String cdDes;
 
-    @Column(name = "cd_ord", nullable = false)
+    @Column(name = "cd_ord")
     private Integer cdOrd;
 
     @Column(name = "upr_cd_id")

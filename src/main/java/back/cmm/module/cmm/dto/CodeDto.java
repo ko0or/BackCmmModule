@@ -15,13 +15,12 @@ import java.util.List;
 @NoArgsConstructor
 public class CodeDto {
 
-    @NotNull
     private String cdId;
-    @NotNull
     private String cdNm;
     private String cdDes;
-    @NotNull
     private Integer cdOrd;
     private String uprCdId;
     private String activeYn;
+    private List<CodeDto> children;
+
 }

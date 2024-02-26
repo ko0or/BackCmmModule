@@ -14,12 +14,12 @@ insert into user_authority (user_id, authority_name) values (1, 'ROLE_ADMIN');
 insert into user_authority (user_id, authority_name) values (2, 'ROLE_USER');
 
 -- 더미 코드
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010001', '고기', '설명', 0, NULL);
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010002', '돼지고기', '설명', 1, 'CD00010001');
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010003', '소고기', '설명', 2, 'CD00010001');
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010004', '양고기', '설명', 3, 'CD00010001');
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020001', '코딩언어', '설명', 0, NULL);
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020002', 'C', '설명', 1, 'CD00020001');
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020003', 'C#', '설명', 2, 'CD00020001');
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020004', 'C++', '설명', 3, 'CD00020001');
-INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020005', 'Java', '설명', 4, 'CD00020001');
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010001', '고기', '설명', 0, NULL);
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010002', '돼지고기', '설명', 1, 'CD00010001');
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010003', '소고기', '설명', 2, 'CD00010001');
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00010004', '양고기', '설명', 3, 'CD00010001');
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020001', '코딩언어', '설명', 0, NULL);
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020002', 'C', '설명', 1, 'CD00020001');
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020003', 'C#', '설명', 2, 'CD00020001');
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020004', 'C++', '설명', 3, 'CD00020001');
+-- INSERT INTO "code_list" (cd_id, cd_nm, cd_des, cd_ord, upr_cd_id) VALUES  ('CD00020005', 'Java', '설명', 4, 'CD00020001');

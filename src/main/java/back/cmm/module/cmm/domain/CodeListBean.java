@@ -19,30 +19,56 @@ import java.util.List;
 @NoArgsConstructor
 public class CodeListBean {
 
-    @Id @Column(name = "cd_id", length = 10)
+/*    @Id
+    @Column(name = "cd_id", length = 10)
     private String cdId;
 
-    @Column(name = "cd_nm", nullable = false)
+    @Column(name = "cd_nm")
     private String cdNm;
 
     @Column(name = "cd_des", length = 255)
     private String cdDes;
 
-    @Column(name = "cd_ord", nullable = false)
+    @Column(name = "cd_ord")
     private Integer cdOrd;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "upr_cd_id") // 부모 엔티티를 참조하는 데 사용
+    private CodeListBean parent;
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CodeListBean> children;
+
+    @Column(name = "active_yn")
+    private String activeYn = "Y"; // 기본값 설정*/
+
+    @Id
+    @Column(name = "cd_id", length = 10)
+    private String cdId;
+
+    @Column(name = "cd_nm")
+    private String cdNm;
+
+    @Column(name = "cd_des", length = 255)
+    private String cdDes;
+
+    @Column(name = "cd_ord")
+    private Integer cdOrd;
+
+    // 이 필드는 부모 엔티티의 ID를 직접 저장하기 위한 것입니다.
     @Column(name = "upr_cd_id")
     private String uprCdId;
 
-    @Column(name = "active_yn")
-    @ColumnDefault("'Y'")
-    private String activeYn;
-
+    // 부모 엔티티와의 관계를 나타내는 필드입니다.
+    // 이 필드는 데이터베이스에 직접 매핑되지 않으며, uprCdId 필드를 통해 관계를 설정합니다.
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "upr_cd_id", insertable = false, updatable = false)
-    private CodeListBean code;
+    @JoinColumn(name = "upr_cd_id", referencedColumnName = "cd_id", insertable = false, updatable = false)
+    private CodeListBean parent;
 
-    @OneToMany(mappedBy = "code", fetch = FetchType.EAGER)
-    private List<CodeListBean> children = new ArrayList<>();
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CodeListBean> children;
 
+    @Column(name = "active_yn")
+    private String activeYn = "Y"; // 기본값 설정
 }
+

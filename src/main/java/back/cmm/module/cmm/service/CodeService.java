@@ -11,5 +11,5 @@ public interface CodeService {
     List<CodeListDto> readAllByUprCdId(String uprCdId);
     List<CodeListDto> readAll();
     void save(CodeDto dto);
-    void saveAll(List<CodeDto> dtos);
+    void saveAll(CodeDto dto);
 }

@@ -45,7 +45,7 @@ public class CodeApi {
 
     @PostMapping("list")
     @Operation(summary = "코드 목록 저장")
-    public void saveAll(@Valid @RequestBody List<CodeDto> dtos) {
-        codeService.saveAll(dtos);
+    public void saveAll(@RequestBody CodeDto dto) {
+        codeService.saveAll(dto);
     }
 }

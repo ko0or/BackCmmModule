@@ -9,10 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CodeRepository extends JpaRepository<CodeListBean, String> {
+
     List<CodeListBean> findAllByUprCdIdIsNull();
-
     List<CodeListBean> findAllByUprCdId(String uprCdId);
-
     CodeListBean findByCdId(String cdId);
 
 }
