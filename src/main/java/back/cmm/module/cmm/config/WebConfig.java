@@ -12,8 +12,11 @@ public class WebConfig {
 
     @Bean
     public CommonsRequestLoggingFilter requestLoggingFilter() {
+
         CommonsRequestLoggingFilter c = new CommonsRequestLoggingFilter();
-        c.setBeforeMessagePrefix("\n\n================================================== HTTP REQUEST LOG [ "+ new SimpleDateFormat("yyyy/MM/dd(E) HH:mm:ss (a)").format(new Date()) + " ] ================================================================\n\n[");
+        String dateFormat = new SimpleDateFormat("yyyy-MM-dd(E요일) HH시 mm분 ss초").format(new Date());
+        String prefix = "\n\n" + "================================================== HTTP REQUEST LOG [ " + dateFormat +  " ] ================================================================\n\n" +
+                dateFormat + " : [";
 
         c.setIncludePayload(true);
         c.setIncludeQueryString(true);
@@ -22,6 +25,7 @@ public class WebConfig {
         c.setIncludeClientInfo(false);
         c.setMaxPayloadLength(100_000);
 
+        c.setBeforeMessagePrefix(prefix);
         c.setAfterMessageSuffix("]\n\n====================================================================================================================================================================\n");
         return c;
     }
