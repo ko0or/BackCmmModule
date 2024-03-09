@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class FileDto extends RegOnlyDto {
 
-    private Long uid;
+    private Long fileUid;
     private String logicalNm;
     private String physicalNm;
     private String path;

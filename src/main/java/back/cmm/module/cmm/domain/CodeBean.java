@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeBean extends ModOnlyBean {
+public class CodeBean extends RegBasicBean {
 
     @Id
     @Column(name = "cd_id", length = 10)
