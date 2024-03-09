@@ -21,6 +21,8 @@ public class QFileBean extends EntityPathBase<FileBean> {
 
     public final QRegOnlyBean _super = new QRegOnlyBean(this);
 
+    public final NumberPath<Long> fileUid = createNumber("fileUid", Long.class);
+
     public final StringPath logicalNm = createString("logicalNm");
 
     public final StringPath path = createString("path");
@@ -32,8 +34,6 @@ public class QFileBean extends EntityPathBase<FileBean> {
 
     //inherited
     public final StringPath regId = _super.regId;
-
-    public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
     public QFileBean(String variable) {
         super(FileBean.class, forVariable(variable));

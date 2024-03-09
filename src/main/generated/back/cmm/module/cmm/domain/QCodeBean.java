@@ -22,7 +22,7 @@ public class QCodeBean extends EntityPathBase<CodeBean> {
 
     public static final QCodeBean codeBean = new QCodeBean("codeBean");
 
-    public final QModOnlyBean _super = new QModOnlyBean(this);
+    public final QRegBasicBean _super = new QRegBasicBean(this);
 
     public final StringPath activeYn = createString("activeYn");
 
@@ -35,6 +35,9 @@ public class QCodeBean extends EntityPathBase<CodeBean> {
     public final NumberPath<Integer> cdOrd = createNumber("cdOrd", Integer.class);
 
     public final ListPath<CodeBean, QCodeBean> children = this.<CodeBean, QCodeBean>createList("children", CodeBean.class, QCodeBean.class, PathInits.DIRECT2);
+
+    //inherited
+    public final StringPath delYn = _super.delYn;
 
     //inherited
     public final DateTimePath<java.util.Date> modDttm = _super.modDttm;

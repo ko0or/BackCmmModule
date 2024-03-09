@@ -21,10 +21,21 @@ public class WebConfig extends CommonsRequestLoggingFilter {
 
     @Override
     protected void beforeRequest(HttpServletRequest request, String message) {
-        String prefix = "\n\n" +
-                "================================================== HTTP REQUEST LOG [ " + getDateTime() +  " ] ================================================================\n\n" +
-                getDateTime() + " : [";
-        super.beforeRequest(request, prefix + message);
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n\n" + "================================================ HTTP REQUEST LOG [ " + request.getRequestURL() + " : " + request.getMethod() + " ] ==============================================================\n");
+//        sb.append("METHOD : " + request.getMethod() + "\n"); // POST
+//        sb.append("getQueryString : " + request.getQueryString() + "\n"); // null
+//        sb.append("getServletPath : " + request.getServletPath() + "\n"); // URI와 동일
+//        sb.append("getCharacterEncoding : " + request.getCharacterEncoding() + "\n");
+//        sb.append("getProtocol : " + request.getProtocol() + "\n"); // HTTP/1.1
+//        sb.append("getContentType : " + request.getContentType() + "\n"); // application/json
+//        sb.append("getRequestURL : " + request.getRequestURL() + "\n"); // http://localhost:8080/auth/login
+//        sb.append(".getCharacterEncoding : " + request.getCharacterEncoding() + "\n"); // UTF-8
+//        sb.append(".getContentType : " + request.getContentType() + "\n");  // application/json
+//        sb.append(".getLocalAddr : " + request.getLocalAddr() + "\n"); // 0:0:0:0:0:0:0:1
+//        sb.append(message);
+
+        super.beforeRequest(request, sb.toString());
     }
 
     @Override
