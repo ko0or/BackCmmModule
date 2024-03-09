@@ -21,6 +21,5 @@ public class CodeDto {
     private Integer cdOrd;
     private String uprCdId;
     private String activeYn;
-    private List<CodeDto> children;
 
 }

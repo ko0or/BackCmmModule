@@ -4,6 +4,7 @@ import back.cmm.module.cmm.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,9 @@ public class FileApi {
     private final FileService fileService;
 
     // IMG DISPLAY
-    @GetMapping("display/{logicalNm:.+}")
+    @GetMapping("img/{logicalNm:.+}")
     @Operation(summary = "이미지 표시")
-    public ResponseEntity<byte[]> displayImg(@PathVariable("logicalNm") String logicalNm){
+    public ResponseEntity<Resource> displayImg(@PathVariable("logicalNm") String logicalNm){
         try {
             return fileService.read(logicalNm);
         } catch (IOException e) {
@@ -29,9 +30,9 @@ public class FileApi {
         }
     }
     // FILE DOWNLOAD
-    @GetMapping("{logicalNm:.+}")
+    @GetMapping("download/{logicalNm:.+}")
     @Operation(summary = "파일 다운로드")
-    public ResponseEntity<byte[]> download(@PathVariable("logicalNm") String logicalNm) {
+    public ResponseEntity<Resource> download(@PathVariable("logicalNm") String logicalNm) {
         try {
             return fileService.read(logicalNm);
         } catch (IOException e) {
@@ -39,7 +40,7 @@ public class FileApi {
         }
     }
     // FILE SAVE
-    @PostMapping
+    @PostMapping("/upload")
     @Operation(summary = "파일 업로드")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile[] files)  {
         try {
@@ -50,7 +51,7 @@ public class FileApi {
         }
     }
     // FILE DELETE
-    @DeleteMapping("{logicalNm:.+}")
+    @DeleteMapping("/delete/{logicalNm:.+}")
     @Operation(summary = "파일 삭제")
     public void del(@PathVariable("logicalNm") String logicalNm) {
         fileService.delete(logicalNm);

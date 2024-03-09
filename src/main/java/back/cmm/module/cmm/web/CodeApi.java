@@ -38,14 +38,9 @@ public class CodeApi {
     }
 
     @PostMapping
-    @Operation(summary = "코드 단일 저장")
-    public void save(@Valid @RequestBody CodeDto dto) {
+    @Operation(summary = "코드 저장")
+    public void save(@Valid @RequestBody CodeListDto dto) {
         codeService.save(dto);
     }
 
-    @PostMapping("list")
-    @Operation(summary = "코드 목록 저장")
-    public void saveAll(@RequestBody CodeDto dto) {
-        codeService.saveAll(dto);
-    }
 }

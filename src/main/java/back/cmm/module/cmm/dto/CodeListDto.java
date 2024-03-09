@@ -20,6 +20,6 @@ public class CodeListDto {
     private Integer cdOrd;
     private String uprCdId;
     private String activeYn;
-    private List<CodeListDto> children = new ArrayList<>();
+    private List<CodeListDto> children;
 
 }

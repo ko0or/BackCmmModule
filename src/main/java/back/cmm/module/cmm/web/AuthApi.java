@@ -22,7 +22,7 @@ public class AuthApi {
     private final UserServiceImpl userService;
 
     @PostMapping("login")
-    @Operation(summary = "로그인 성공시 JWT 토큰 리턴")
+    @Operation(summary = "로그인 성공시 JWT 토큰 리턴", description = "Login ID: admin, PW: admin")
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
         return userService.login(loginDto);
     }

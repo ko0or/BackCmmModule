@@ -33,25 +33,24 @@ public class SecurityConfig {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     private static final String[] ALLOW_SWAGGER = {
-            /* swagger v2 */
-            "/v2/api-docs",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui.html",
-            "/webjars/**",
-            /*swagger v3 */
+
             "/v3/api-docs/**",
             "/swagger-ui/**",
+
     };
     private static final String[] PUBLIC_ALLOW_GET_LIST = {
+
             "/auth/login",
             "/auth/signup",
+            "/file/**",
+
     };
     private static final String[] PUBLIC_ALLOW_POST_LIST = {
+
             "/auth/login",
             "/auth/signup",
+            "/file/**",
+
     };
 
     @Bean

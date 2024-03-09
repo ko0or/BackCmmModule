@@ -7,6 +7,8 @@ import back.cmm.module.cmm.util.FileUtil;
 import back.cmm.module.cmm.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,8 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,25 +36,41 @@ public class FileServiceImpl implements FileService {
     private final MapperUtil mapperUtil;
 
     @Override
-    public ResponseEntity<byte[]> read(String logicalNm) throws IOException {
-            Optional<FileBean> fileBean = fileRepository.findByLogicalNm(logicalNm);
-            if (fileBean.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
-            FileDto fileDto = mapperUtil.map(fileBean.get(), FileDto.class);
-            File file = new File(fileDto.getPath() + File.separator + fileDto.getPhysicalNm());
-            if (file.exists()) {
-                String mimeType = null;
-                mimeType = Files.probeContentType(file.toPath());
-                MediaType mediaType = mimeType != null ? MediaType.parseMediaType(mimeType) : MediaType.APPLICATION_OCTET_STREAM;
+    public ResponseEntity<Resource> read(String logicalNm) {
+        Optional<FileBean> fileBean = fileRepository.findByLogicalNm(logicalNm);
+        if (fileBean.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
 
-                return ResponseEntity.status(HttpStatus.OK)
-                        .contentType(mediaType)
-                        .body(Files.readAllBytes(file.toPath()));
-            } else {
+        FileDto fileDto = mapperUtil.map(fileBean.get(), FileDto.class);
+        Path filePath = Paths.get(fileDto.getPath(), fileDto.getLogicalNm());
+
+        try {
+            // 파일 경로 검증 로직 추가 (예: Path Traversal 공격 방지)
+            if (!filePath.normalize().startsWith(fileDto.getPath())) {
+                throw new SecurityException("Invalid file path");
+            }
+
+            Resource fileResource = new UrlResource(filePath.toUri());
+            if (!fileResource.exists()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
 
+            String mimeType = Files.probeContentType(filePath);
+            MediaType mediaType = (mimeType != null) ? MediaType.parseMediaType(mimeType) : MediaType.APPLICATION_OCTET_STREAM;
+
+            // 파일명 인코딩 처리
+            String encodedFileName = URLEncoder.encode(fileDto.getPhysicalNm(), StandardCharsets.UTF_8.toString()).replaceAll("\\+", "%20");
+            String contentDisposition = "attachment; filename*=UTF-8''" + encodedFileName;
+
+            return ResponseEntity.ok()
+                    .contentType(mediaType)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
+                    .body(fileResource);
+        } catch (IOException | SecurityException e) {
+            // 보다 구체적인 예외 처리 로직 추가
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
 

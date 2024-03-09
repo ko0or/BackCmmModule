@@ -38,12 +38,7 @@ public class CodeServiceImpl implements CodeService {
     }
 
     @Override
-    public void save(CodeDto dto) {
-        codeRepository.save(mapperUtil.map(dto, CodeListBean.class));
-    }
-
-    @Override
-    public void saveAll(CodeDto dto) {
+    public void save(CodeListDto dto) {
         codeRepository.save(mapperUtil.map(dto, CodeListBean.class));
     }
 
