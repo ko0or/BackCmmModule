@@ -5,8 +5,10 @@ import back.cmm.module.cmm.dto.FileDto;
 import back.cmm.module.cmm.repository.FileRepository;
 import back.cmm.module.cmm.util.FileUtil;
 import back.cmm.module.cmm.util.MapperUtil;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.JDBCException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -31,11 +33,13 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
+
     private final FileRepository fileRepository;
     private final FileUtil fileUtil;
     private final MapperUtil mapperUtil;
 
     @Override
+    @Transactional
     public ResponseEntity<Resource> read(String logicalNm) {
         Optional<FileBean> fileBean = fileRepository.findByLogicalNm(logicalNm);
         if (fileBean.isEmpty()) {
@@ -67,15 +71,17 @@ public class FileServiceImpl implements FileService {
                     .contentType(mediaType)
                     .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
                     .body(fileResource);
+
         } catch (IOException | SecurityException e) {
-            // 보다 구체적인 예외 처리 로직 추가
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
 
     @Override
+    @Transactional
     public void save(MultipartFile[] files) throws IOException {
+
         Path uploadPath = fileUtil.determineUploadPath();
         for (MultipartFile file : files) {
             if (file.isEmpty()) {
@@ -94,10 +100,13 @@ public class FileServiceImpl implements FileService {
             fileBean.setPath(uploadPath.toString()); // 실제 파일 경로
             fileRepository.save(fileBean);
         }
+
+
     }
 
 
     @Override
+    @Transactional
     public void delete(String logicalNm) {
         fileRepository.deleteByLogicalNm(logicalNm);
     }
