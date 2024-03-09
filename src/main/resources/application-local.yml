@@ -1,0 +1,17 @@
+spring:
+  h2.console.enabled: true
+  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+    url: jdbc:log4jdbc:h2:mem:testdb
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+logging:
+  level:
+    back.cmm.module: debug
+    org:
+      springframework.web.filter.CommonsRequestLoggingFilter: debug

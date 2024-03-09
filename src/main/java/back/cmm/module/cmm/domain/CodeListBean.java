@@ -35,8 +35,6 @@ public class CodeListBean {
     @Column(name = "upr_cd_id")
     private String uprCdId;
 
-    // 부모 엔티티와의 관계를 나타내는 필드입니다.
-    // 이 필드는 데이터베이스에 직접 매핑되지 않으며, uprCdId 필드를 통해 관계를 설정합니다.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "upr_cd_id", referencedColumnName = "cd_id", insertable = false, updatable = false)
     private CodeListBean parent;
