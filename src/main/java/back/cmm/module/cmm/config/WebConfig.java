@@ -1,33 +1,40 @@
 package back.cmm.module.cmm.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Configuration
-public class WebConfig {
+@Component
+public class WebConfig extends CommonsRequestLoggingFilter {
 
-    @Bean
-    public CommonsRequestLoggingFilter requestLoggingFilter() {
+    public WebConfig() {
+        this.setIncludePayload(true);
+        this.setIncludeQueryString(true);
 
-        CommonsRequestLoggingFilter c = new CommonsRequestLoggingFilter();
-        String dateFormat = new SimpleDateFormat("yyyy-MM-dd(E요일) HH시 mm분 ss초").format(new Date());
-        String prefix = "\n\n" + "================================================== HTTP REQUEST LOG [ " + dateFormat +  " ] ================================================================\n\n" +
-                dateFormat + " : [";
+        this.setIncludeHeaders(false);
+        this.setIncludeClientInfo(false);
+        this.setMaxPayloadLength(2_147_483_647);
+    }
 
-        c.setIncludePayload(true);
-        c.setIncludeQueryString(true);
+    @Override
+    protected void beforeRequest(HttpServletRequest request, String message) {
+        String prefix = "\n\n" +
+                "================================================== HTTP REQUEST LOG [ " + getDateTime() +  " ] ================================================================\n\n" +
+                getDateTime() + " : [";
+        super.beforeRequest(request, prefix + message);
+    }
 
-        c.setIncludeHeaders(false);
-        c.setIncludeClientInfo(false);
-        c.setMaxPayloadLength(100_000);
+    @Override
+    protected void afterRequest(HttpServletRequest request, String message) {
+        String suffix = "]\n\n====================================================================================================================================================================\n";
+        super.afterRequest(request, message + suffix);
+    }
 
-        c.setBeforeMessagePrefix(prefix);
-        c.setAfterMessageSuffix("]\n\n====================================================================================================================================================================\n");
-        return c;
+    private String getDateTime() {
+        return new SimpleDateFormat("yyyy-MM-dd(E요일) HH시 mm분 ss초").format(new Date());
     }
 
 }

@@ -67,7 +67,7 @@ public class SecurityConfig {
             )
 
             .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                .requestMatchers(PathRequest.toH2Console()).permitAll() // h2-console
+//                .requestMatchers(PathRequest.toH2Console()).permitAll() // h2-console
                 .requestMatchers(HttpMethod.GET,  ALLOW_SWAGGER).permitAll() // swagger doc
                 .requestMatchers(HttpMethod.GET, PUBLIC_ALLOW_GET_LIST).permitAll() // public api [GET]
                 .requestMatchers(HttpMethod.POST, PUBLIC_ALLOW_POST_LIST).permitAll() // public api  [POST]

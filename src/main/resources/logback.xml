@@ -1,4 +1,5 @@
 <configuration>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd(E요일) HH시 mm분 ss초} : [%thread] %-3level %logger{5} - %msg %n</pattern>
@@ -6,11 +7,11 @@
     </appender>
 
     <logger name="jdbc" level="OFF"/>
-    <logger name="jdbc.sqlonly" level="OFF"/>
-    <logger name="jdbc.sqltiming" level="ON"/>
+    <logger name="jdbc.sqlonly" level="ON"/>
+    <logger name="jdbc.sqltiming" level="OFF"/>
     <logger name="jdbc.audit" level="OFF"/>
     <logger name="jdbc.resultset" level="OFF"/>
-    <logger name="jdbc.resultsettable" level="DEBUG"/>
+    <logger name="jdbc.resultsettable" level="ON"/>
     <logger name="jdbc.connection" level="OFF"/>
 
     <root level="INFO">
