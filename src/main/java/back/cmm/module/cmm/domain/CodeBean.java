@@ -16,9 +16,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeBean {
+public class CodeBean extends ModOnlyBean {
 
-    @Id @Column(name = "cd_id", length = 10)
+    @Id
+    @Column(name = "cd_id", length = 10)
     private String cdId;
 
     @Column(name = "cd_nm")
@@ -33,12 +34,14 @@ public class CodeBean {
     @Column(name = "upr_cd_id")
     private String uprCdId;
 
-    @Column(name = "active_yn")
-    @ColumnDefault("'Y'")
-    private String activeYn;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "upr_cd_id", insertable = false, updatable = false)
-    private CodeBean code;
+    @JoinColumn(name = "upr_cd_id", referencedColumnName = "cd_id", insertable = false, updatable = false)
+    private CodeBean parent;
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CodeBean> children;
+
+    @Column(name = "active_yn")
+    private String activeYn = "Y"; // 기본값 설정
 
 }

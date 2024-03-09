@@ -1,6 +1,5 @@
 package back.cmm.module.cmm.service;
 
-import back.cmm.module.cmm.domain.CodeListBean;
 import back.cmm.module.cmm.dto.CodeDto;
 import back.cmm.module.cmm.dto.CodeListDto;
 

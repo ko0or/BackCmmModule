@@ -22,6 +22,8 @@ public class QCodeBean extends EntityPathBase<CodeBean> {
 
     public static final QCodeBean codeBean = new QCodeBean("codeBean");
 
+    public final QModOnlyBean _super = new QModOnlyBean(this);
+
     public final StringPath activeYn = createString("activeYn");
 
     public final StringPath cdDes = createString("cdDes");
@@ -32,7 +34,21 @@ public class QCodeBean extends EntityPathBase<CodeBean> {
 
     public final NumberPath<Integer> cdOrd = createNumber("cdOrd", Integer.class);
 
-    public final QCodeBean code;
+    public final ListPath<CodeBean, QCodeBean> children = this.<CodeBean, QCodeBean>createList("children", CodeBean.class, QCodeBean.class, PathInits.DIRECT2);
+
+    //inherited
+    public final DateTimePath<java.util.Date> modDttm = _super.modDttm;
+
+    //inherited
+    public final StringPath modId = _super.modId;
+
+    public final QCodeBean parent;
+
+    //inherited
+    public final DateTimePath<java.util.Date> regDttm = _super.regDttm;
+
+    //inherited
+    public final StringPath regId = _super.regId;
 
     public final StringPath uprCdId = createString("uprCdId");
 
@@ -54,7 +70,7 @@ public class QCodeBean extends EntityPathBase<CodeBean> {
 
     public QCodeBean(Class<? extends CodeBean> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.code = inits.isInitialized("code") ? new QCodeBean(forProperty("code"), inits.get("code")) : null;
+        this.parent = inits.isInitialized("parent") ? new QCodeBean(forProperty("parent"), inits.get("parent")) : null;
     }
 
 }

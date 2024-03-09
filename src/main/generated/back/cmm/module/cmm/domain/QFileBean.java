@@ -19,11 +19,19 @@ public class QFileBean extends EntityPathBase<FileBean> {
 
     public static final QFileBean fileBean = new QFileBean("fileBean");
 
+    public final QRegOnlyBean _super = new QRegOnlyBean(this);
+
     public final StringPath logicalNm = createString("logicalNm");
 
     public final StringPath path = createString("path");
 
     public final StringPath physicalNm = createString("physicalNm");
+
+    //inherited
+    public final DateTimePath<java.util.Date> regDttm = _super.regDttm;
+
+    //inherited
+    public final StringPath regId = _super.regId;
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 

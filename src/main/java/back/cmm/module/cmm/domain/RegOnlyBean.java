@@ -2,19 +2,27 @@ package back.cmm.module.cmm.domain;
 
 import back.cmm.module.cmm.util.SecurityUtil;
 import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
-public class RegOnlyBean {
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public class RegOnlyBean implements Serializable {
+
+    @CreatedDate
     @Column(name = "reg_dttm", updatable = false)
     private Date regDttm;
 
+    @CreatedBy
     @Column(name = "reg_id", length = 20, updatable = false)
     private String regId;
 
-    public RegOnlyBean() {
-        this.regDttm = new Date();
-        regId = SecurityUtil.getCurrentUsername().orElse(null);
-    }
 }

@@ -1,16 +1,10 @@
 package back.cmm.module.cmm.service;
 
-import back.cmm.module.cmm.domain.CodeListBean;
-import back.cmm.module.cmm.domain.QFileBean;
+import back.cmm.module.cmm.domain.CodeBean;
 import back.cmm.module.cmm.dto.CodeDto;
 import back.cmm.module.cmm.dto.CodeListDto;
 import back.cmm.module.cmm.repository.CodeRepository;
 import back.cmm.module.cmm.util.MapperUtil;
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.QueryFactory;
-import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.QBean;
-import com.querydsl.jpa.JPQLQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +33,7 @@ public class CodeServiceImpl implements CodeService {
 
     @Override
     public void save(CodeListDto dto) {
-        codeRepository.save(mapperUtil.map(dto, CodeListBean.class));
+        codeRepository.save(mapperUtil.map(dto, CodeBean.class));
     }
 
     @Override
