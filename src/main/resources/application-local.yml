@@ -15,5 +15,3 @@ spring:
 logging:
   level:
     back.cmm.module: debug
-    org:
-      springframework.web.filter.CommonsRequestLoggingFilter: debug
