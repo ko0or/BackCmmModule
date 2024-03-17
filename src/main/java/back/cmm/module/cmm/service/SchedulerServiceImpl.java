@@ -6,7 +6,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Slf4j
@@ -19,8 +18,7 @@ public class SchedulerServiceImpl {
         executeTask();
     }
 
-     /* 실행후, 매일 0시에 실행 */
-//    @Scheduled(fixedRate = 10_000L)
+    /* 매일 자정마다 실행 */
     @Scheduled(cron = "0 0 0 * * *")
     public void executeDailyTask() {
         executeTask();
@@ -29,7 +27,6 @@ public class SchedulerServiceImpl {
      /* 실행될 내용 */
     private void executeTask() {
         log.info("=============== $#$# ===============> 작업이 실행됩니다: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
-
     }
 
 }
