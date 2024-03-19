@@ -1,4 +1,4 @@
-package back.cmm.module.cmm.base.util;
+package back.cmm.module.cmm.security.util;
 
 import back.cmm.module.cmm.security.dto.UserDto;
 import back.cmm.module.cmm.security.exception.NotFoundMemberException;

@@ -1,7 +1,7 @@
 package back.cmm.module.cmm.security.web;
 
 import back.cmm.module.cmm.security.dto.UserDto;
-import back.cmm.module.cmm.base.util.SecurityUtil;
+import back.cmm.module.cmm.security.util.SecurityUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;

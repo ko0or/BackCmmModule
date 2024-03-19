@@ -1,6 +1,6 @@
 package back.cmm.module.cmm.base.config;
 
-import back.cmm.module.cmm.base.util.SecurityUtil;
+import back.cmm.module.cmm.security.util.SecurityUtil;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
