@@ -1,25 +1,28 @@
 # 백엔드 공통 모듈
-`Swagger-UI`
+### `Swagger-UI`
 ```
 http://localhost:8080/swagger-ui/index.html#/
 ```
 <br>
 
-`기본 정보`
+### `기본 정보`
 ```
 SpringBoot : 3.2.2
 JDK : 17
+
 Profile List : local
 DB Set : H2 , PostgreSQL
+
 Dependency : JPA, JWT, QueryDSL , SwaggerUI, Lombok, MapperUtil ...
 ```
 <br>
 
 
-`주요 패키지`
+### `주요 패키지`
 ```
 패키지 경로 : src/main/java/back/cmm/module/cmm
 패키지 분류
+
   1. base
     다음과 같이 모든 패키지에서 사용할 수 있는 유용한 기능이 포함되어있습니다.
     - 각종 설정(cors, swagger, jpa auditor)
