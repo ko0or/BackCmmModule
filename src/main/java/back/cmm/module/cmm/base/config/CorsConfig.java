@@ -18,18 +18,17 @@ public class CorsConfig {
       UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
       CorsConfiguration config = new CorsConfiguration();
       config.setAllowCredentials(true);
-      config.setAllowedOriginPatterns(ALLOW_ORIGIN_LIST);
       config.setAllowedHeaders(ALLOW_HEADER_LIST);
+      config.setAllowedOriginPatterns(ALLOW_ORIGIN_LIST);
       config.setAllowedMethods(ALLOW_METHOD_LIST);
-
-      source.registerCorsConfiguration("/api/**", config);
+      source.registerCorsConfiguration("/**", config);
       return new CorsFilter(source);
    }
 
    private final static List<String> ALLOW_ORIGIN_LIST = new ArrayList<>(
            Arrays.asList(
-                   "http://localhost:3000/",
-                   "http://localhost:3003/"
+                   "http://localhost:3000",
+                   "http://localhost:3003"
            )
    );
    private final static List<String> ALLOW_HEADER_LIST = new ArrayList<>(
@@ -44,7 +43,7 @@ public class CorsConfig {
                    "GET",
                    "POST",
                    "DELETE",
-                   "OPTION"
+                   "OPTIONS"
            )
    );
 }

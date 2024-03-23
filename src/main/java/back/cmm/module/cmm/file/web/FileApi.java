@@ -40,7 +40,7 @@ public class FileApi {
         }
     }
     // FILE SAVE
-    @PostMapping("/upload")
+    @PostMapping("upload")
     @Operation(summary = "파일 업로드")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile[] files)  {
         try {
@@ -51,7 +51,7 @@ public class FileApi {
         }
     }
     // FILE DELETE
-    @DeleteMapping("/delete/{logicalNm:.+}")
+    @DeleteMapping("delete/{logicalNm:.+}")
     @Operation(summary = "파일 삭제")
     public void del(@PathVariable("logicalNm") String logicalNm) {
         fileService.delete(logicalNm);
