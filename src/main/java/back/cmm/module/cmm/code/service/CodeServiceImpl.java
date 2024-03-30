@@ -46,11 +46,11 @@ public class CodeServiceImpl implements CodeService {
     }
 
     public List<CodeListDto> setOrder(List<CodeListDto> dtos) {
-            Collections.sort(dtos, Comparator.comparing(CodeListDto::getCdId));
-            for(CodeListDto dto : dtos) {
-                if (dto.getChildren() != null) {
-                    setOrder(dto.getChildren());
-                }
+        Collections.sort(dtos, Comparator.comparing(CodeListDto::getCdId));
+        for (CodeListDto dto : dtos) {
+            if (dto.getChildren() != null) {
+                setOrder(dto.getChildren());
+            }
         }
         return dtos;
     }
