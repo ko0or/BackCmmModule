@@ -34,7 +34,7 @@ public class CodeBean extends RegBasicBean {
     @JoinColumn(name = "upr_cd_id", referencedColumnName = "cd_id", insertable = false, updatable = false)
     private CodeBean parent;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<CodeBean> children;
 
     @Column(name = "active_yn")

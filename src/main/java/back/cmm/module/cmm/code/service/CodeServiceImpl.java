@@ -8,6 +8,8 @@ import back.cmm.module.cmm.base.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -23,7 +25,8 @@ public class CodeServiceImpl implements CodeService {
 
     @Override
     public List<CodeListDto> readAll() {
-        return mapperUtil.map(codeRepository.findAllByUprCdIdIsNull(), CodeListDto.class);
+        List<CodeListDto> dtos = mapperUtil.map(codeRepository.findAllByUprCdIdIsNull(), CodeListDto.class);
+        return setOrder(dtos);
     }
 
     @Override
@@ -33,6 +36,7 @@ public class CodeServiceImpl implements CodeService {
 
     @Override
     public void save(CodeListDto dto) {
+        codeRepository.deleteAll();
         codeRepository.save(mapperUtil.map(dto, CodeBean.class));
     }
 
@@ -41,4 +45,13 @@ public class CodeServiceImpl implements CodeService {
         return mapperUtil.map(codeRepository.findByCdId(cdId), CodeDto.class);
     }
 
+    public List<CodeListDto> setOrder(List<CodeListDto> dtos) {
+            Collections.sort(dtos, Comparator.comparing(CodeListDto::getCdId));
+            for(CodeListDto dto : dtos) {
+                if (dto.getChildren() != null) {
+                    setOrder(dto.getChildren());
+                }
+        }
+        return dtos;
+    }
 }
