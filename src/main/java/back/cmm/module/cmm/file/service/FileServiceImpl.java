@@ -77,7 +77,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     @Transactional
-    public void save(MultipartFile[] files) throws IOException {
+    public String save(MultipartFile[] files) throws IOException {
 
         Path uploadPath = fileUtil.determineUploadPath();
         for (MultipartFile file : files) {
@@ -96,9 +96,12 @@ public class FileServiceImpl implements FileService {
             fileBean.setPhysicalNm(originalFilename); // 실제 파일명
             fileBean.setPath(uploadPath.toString()); // 실제 파일 경로
             fileRepository.save(fileBean);
+
+            return logicalFileName;
         }
 
 
+        return null;
     }
 
 

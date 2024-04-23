@@ -3,6 +3,7 @@ package back.cmm.module.cmm.file.web;
 import back.cmm.module.cmm.file.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Tag(name = "File API", description = "파일 업로드, 삭제, 다운로드 및 이미지 표시 (준비중..)")
 @RestController
@@ -50,6 +53,24 @@ public class FileApi {
             return new ResponseEntity<>("파일 업로드 중 오류가 발생했습니다: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("ckeditor/img-upload")
+    @Operation(summary = "파일 업로드")
+    public Map<String, Object> ckEditorImgUpload(@RequestParam("upload") MultipartFile[] files, HttpServletRequest hsr)  {
+        Map<String, Object> responseData = new HashMap<>();
+        try {
+            String basePath = hsr.getScheme() + "://" + hsr.getServerName() + ":" + hsr.getServerPort() + "/file/img/";
+            String savedPath = basePath + fileService.save(files);
+            responseData.put("uploaded", true);
+            responseData.put("url", savedPath);
+            return responseData;
+        } catch (IOException e) {
+            responseData.put("uploaded", false);
+            responseData.put("url", null);
+            return null;
+        }
+    }
+
     // FILE DELETE
     @DeleteMapping("delete/{logicalNm:.+}")
     @Operation(summary = "파일 삭제")
