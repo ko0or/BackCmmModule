@@ -1,7 +1,7 @@
 spring:
 
   profiles:
-    active: local
+    active: superbase
 
   servlet:
     multipart:
@@ -13,8 +13,26 @@ spring:
     hibernate:
       ddl-auto: update
 
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 1b958d55ee701ac4832129d0dc1ae757
+            client-secret: PcBSPdiVElgdYAt9tqmMvMJbjooKwl7i
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/ouath/test"
+            scope: account_email
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
 jwt:
   header: Authorization
   secret: luZsdmVybm0LWp3ZWNoLXNwcmlc2lS10ZWNyZXQtc2lsdmVybmuZy1ib290LWp3dCluZS10ZWNoLXNwcmluZy1ib2910dXRvcmlhbC1zdC10dXRvcmlhbC1zZWNyZXQK
   token-validity-in-seconds: 28_800 # (60 * 60) * 8 = 28,800 (8시간)
+
 
