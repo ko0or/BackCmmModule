@@ -1,5 +1,7 @@
 package back.cmm.module.cmm.ouath2.web;
 
+import back.cmm.module.cmm.ouath2.service.OAuth2Service;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -7,19 +9,34 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/ouath")
+@RequestMapping("/oauth2")
 public class OAuth2Api {
 
-    @Value("${spring.security.oauth2.client.registration.kakao.client-id}")
+    @Resource private OAuth2Service oAuth2Service;
+
+    @GetMapping("kakao/{accessToken}")
+    public ResponseEntity<Object> kakaoLogin(@PathVariable(name = "accessToken") String accessToekn) {
+        return oAuth2Service.kakaoLogin(accessToekn);
+    }
+
+    @GetMapping("naver/{accessToken}")
+    public ResponseEntity<Object> naverLogin(@PathVariable(name = "accessToken") String accessToekn) {
+        return oAuth2Service.naverLogin(accessToekn);
+    }
+
+    @GetMapping("google/{accessToken}")
+    public ResponseEntity<Object> googleLogin(@PathVariable(name = "accessToken") String accessToekn) {
+        return oAuth2Service.googleLogin(accessToekn);
+    }
+
+
+/*    @Value("${spring.security.oauth2.client.registration.kakao.client-id}")
     private String CLIENT_ID;
 
     @Value("${spring.security.oauth2.client.registration.kakao.redirect-uri}")
@@ -30,9 +47,9 @@ public class OAuth2Api {
     private String USER_INFO_URI = "https://kapi.kakao.com/v2/user/me";
 
 
-    // FIXME : 결과에서 이메일,썸넬 .. 등 특정 필드만 뽑아오기
+    // FIXME : 결과에서 이메일,썸넬 .. 등 특정 필드만 뽑아오기*/
 
-    @GetMapping("test")
+/*    @GetMapping("test")
     public String test(@RequestParam(name = "code") String code) {
 
 //        sysoutConfig();
@@ -91,13 +108,6 @@ public class OAuth2Api {
                 Object.class
         );
 
-    }
+    }*/
 
-    public void sysoutConfig() {
-        System.out.println("CLIENT_ID " + CLIENT_ID);
-        System.out.println("REDIRECT_URI " + REDIRECT_URI);
-        System.out.println("GRANT_TYPE " + GRANT_TYPE);
-        System.out.println("USER_INFO_URI " + TOKEN_INFO_URI);
-        System.out.println("USER_INFO_URI " + USER_INFO_URI);
-    }
 }

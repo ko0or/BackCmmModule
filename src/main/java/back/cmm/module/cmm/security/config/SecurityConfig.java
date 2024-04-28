@@ -36,11 +36,11 @@ public class SecurityConfig {
 
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/ouath/**",
 
     };
     private static final String[] PUBLIC_ALLOW_GET_LIST = {
 
+            "/oauth2/**",
             "/auth/login",
             "/auth/signup",
             "/file/**",
@@ -48,6 +48,7 @@ public class SecurityConfig {
     };
     private static final String[] PUBLIC_ALLOW_POST_LIST = {
 
+            "/oauth2/**",
             "/auth/login",
             "/auth/signup",
             "/file/**",

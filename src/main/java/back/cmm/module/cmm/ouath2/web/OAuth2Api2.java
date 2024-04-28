@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/ouath")
+@RequestMapping("/ouath-dep")
 public class OAuth2Api2 {
 
 
 
+/*
     // FIXME : 결과에서 이메일,썸넬 .. 등 특정 필드만 뽑아오기
 
     @GetMapping("naver")
@@ -48,5 +49,6 @@ public class OAuth2Api2 {
 
     }
 
+*/
 
 }

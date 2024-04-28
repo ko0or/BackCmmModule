@@ -35,7 +35,8 @@ public class CorsConfig {
            Arrays.asList(
                    "Authorization",
                    "Content-Type",
-                   "x-requested-with"
+                   "x-requested-with",
+                   "Access-Control-Allow-Origin"
            )
    );
    private final static List<String> ALLOW_METHOD_LIST = new ArrayList<>(
