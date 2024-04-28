@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     public ResponseEntity<TokenDto> login(LoginDto loginDto) {
+
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
         String jwt = tokenProvider.createToken(authentication);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+
         return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
     }
 

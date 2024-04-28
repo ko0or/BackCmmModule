@@ -8,7 +8,6 @@ import back.cmm.module.cmm.ouath2.dto.OAuth2KakaoDto;
 import back.cmm.module.cmm.ouath2.dto.OAuth2NaverDto;
 import back.cmm.module.cmm.security.dao.UserAuthorityRepository;
 import back.cmm.module.cmm.security.dao.UserRepository;
-import back.cmm.module.cmm.security.domain.AuthorityBean;
 import back.cmm.module.cmm.security.domain.UserAuthorityBean;
 import back.cmm.module.cmm.security.domain.UserAuthorityPKBean;
 import back.cmm.module.cmm.security.domain.UserBean;
@@ -16,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.impl.Base64UrlCodec;
 import jakarta.annotation.Resource;
 import org.springframework.http.*;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +24,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class OAuth2ServiceImpl implements OAuth2Service {
@@ -46,7 +44,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
     @Resource private OAuth2NaverConfig naverConfig;
     @Resource private UserRepository userRepository;
     @Resource private UserAuthorityRepository userAuthorityRepository;
-
+    @Resource private PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -78,7 +76,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                         new UserBean(
                                 null,
                                 result.getBody().getKakao_account().getEmail(),
-                                null,
+                                passwordEncoder.encode(LOGIN_TYPE.KAKAO.toString()),
                                 result.getBody().getKakao_account().getProfile().getNickname(),
                                 "Y",
                                 result.getBody().getKakao_account().getProfile().getProfile_image_url(),
@@ -92,7 +90,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 );
             }
             /**/
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(result);
         }
 
         return ResponseEntity.badRequest().body("로그인 실패");
@@ -125,7 +123,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                         new UserBean(
                                 null,
                                 result.getBody().getResponse().getId(),
-                                null,
+                                passwordEncoder.encode(LOGIN_TYPE.NAVER.toString()),
                                 result.getBody().getResponse().getName(),
                                 "Y",
                                 result.getBody().getResponse().getProfile_image(),
@@ -139,7 +137,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 );
             }
             /**/
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(result);
         }
 
         return ResponseEntity.badRequest().body("로그인 실패");
@@ -186,7 +184,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                             new UserBean(
                                     null,
                                     result.getBody().getSub(),
-                                    null,
+                                    passwordEncoder.encode(LOGIN_TYPE.GOOGLE.toString()),
                                     result.getBody().getName(),
                                     "Y",
                                     result.getBody().getPicture(),
@@ -205,7 +203,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 throw new RuntimeException(e);
             }
 
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(result);
         }
 
         return ResponseEntity.badRequest().body("로그인 실패");
