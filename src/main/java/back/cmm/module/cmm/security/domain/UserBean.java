@@ -33,6 +33,9 @@ public class UserBean {
    @ColumnDefault("'Y'")
    private String activeYn;
 
+   @Column(name = "img_locial_nm")
+   private String imgLogicalNm;
+
    @ManyToMany
    @JoinTable(
       name = "user_authority",

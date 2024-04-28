@@ -81,6 +81,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                                 null,
                                 result.getBody().getKakao_account().getProfile().getNickname(),
                                 "Y",
+                                result.getBody().getKakao_account().getProfile().getProfile_image_url(),
                                 null
                         )
                 );
@@ -91,7 +92,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 );
             }
             /**/
-            return ResponseEntity.ok(result);
+            return ResponseEntity.ok().build();
         }
 
         return ResponseEntity.badRequest().body("로그인 실패");
@@ -127,6 +128,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                                 null,
                                 result.getBody().getResponse().getName(),
                                 "Y",
+                                result.getBody().getResponse().getProfile_image(),
                                 null
                         )
                 );
@@ -137,7 +139,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 );
             }
             /**/
-            return ResponseEntity.ok(result);
+            return ResponseEntity.ok().build();
         }
 
         return ResponseEntity.badRequest().body("로그인 실패");
@@ -187,6 +189,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                                     null,
                                     result.getBody().getName(),
                                     "Y",
+                                    result.getBody().getPicture(),
                                     null
                             )
                     );
@@ -202,7 +205,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 throw new RuntimeException(e);
             }
 
-            return ResponseEntity.ok(result);
+            return ResponseEntity.ok().build();
         }
 
         return ResponseEntity.badRequest().body("로그인 실패");

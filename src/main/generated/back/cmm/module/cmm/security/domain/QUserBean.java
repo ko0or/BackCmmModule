@@ -24,6 +24,8 @@ public class QUserBean extends EntityPathBase<UserBean> {
 
     public final SetPath<AuthorityBean, QAuthorityBean> authorities = this.<AuthorityBean, QAuthorityBean>createSet("authorities", AuthorityBean.class, QAuthorityBean.class, PathInits.DIRECT2);
 
+    public final StringPath imgLogicalNm = createString("imgLogicalNm");
+
     public final StringPath nickname = createString("nickname");
 
     public final StringPath password = createString("password");

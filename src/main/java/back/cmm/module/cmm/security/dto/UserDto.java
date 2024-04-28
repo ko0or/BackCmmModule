@@ -29,6 +29,8 @@ public class UserDto {
    @Size(min = 3, max = 50)
    private String nickname;
 
+   private String imgLogicalNm;
+
    private Set<AuthorityDto> authorityDtoSet;
 
    public static UserDto from(UserBean user) {
@@ -36,7 +38,9 @@ public class UserDto {
 
       return UserDto.builder()
               .username(user.getUsername())
+              .password(user.getPassword())
               .nickname(user.getNickname())
+              .imgLogicalNm(user.getImgLogicalNm())
               .authorityDtoSet(user.getAuthorities().stream()
                       .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
                       .collect(Collectors.toSet()))
