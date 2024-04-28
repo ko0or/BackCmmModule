@@ -28,47 +28,16 @@ public class OAuth2ServiceImpl implements OAuth2Service {
     @Override
     public ResponseEntity<Object> kakaoLogin(String accessToken) {
 
-        System.out.println("@$@$@$ 카카오 로그인 엑세스 토큰 -> " + accessToken);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded;charset=utf-8");
+        httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
 
-        /*
-         * 1. 카카오 로그인 성공후 코드 -> 엑세스 토큰 요청
-         * */
-
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded;charset=utf-8");
-//
-//        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-//        params.add("grant_type", kakaoConfig.getGRANT_TYPE()); //고정값
-//        params.add("client_id", kakaoConfig.getCLIENT_ID());
-//        params.add("redirect_uri", kakaoConfig.getREDIRECT_URI());
-//        params.add("code", loginCode);
-//
-//        HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(params, httpHeaders);
-//        RestTemplate restTemplate = new RestTemplate();
-//        ResponseEntity<Map> response = restTemplate.exchange(
-//                kakaoConfig.getTOKEN_INFO_URI(),
-//                HttpMethod.POST,
-//                httpEntity,
-//                Map.class
-//        );
-//
-//        System.out.println("token = " + response.getBody().get("access_token"));
-//        String accessToken = response.getBody().get("access_token").toString();
-
-        /*
-         * 2. 엑세스 토큰으로 사용자 정보 요청
-         * */
-
-        HttpHeaders httpHeaders2 = new HttpHeaders();
-        httpHeaders2.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded;charset=utf-8");
-        httpHeaders2.add(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
-
-        HttpEntity<MultiValueMap<String, String>> httpEntity2 = new HttpEntity<>(httpHeaders2);
-        RestTemplate restTemplate2 = new RestTemplate();
-        ResponseEntity<Object> result = restTemplate2.exchange(
+        HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(httpHeaders);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Object> result = restTemplate.exchange(
                 kakaoConfig.getUSER_INFO_URI(),
                 HttpMethod.GET,
-                httpEntity2,
+                httpEntity,
                 Object.class
         );
 
