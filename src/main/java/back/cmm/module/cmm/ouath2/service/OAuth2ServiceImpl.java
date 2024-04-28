@@ -7,24 +7,30 @@ import back.cmm.module.cmm.ouath2.dto.OAuth2GoogleDto;
 import back.cmm.module.cmm.ouath2.dto.OAuth2KakaoDto;
 import back.cmm.module.cmm.ouath2.dto.OAuth2NaverDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.impl.Base64UrlCodec;
 import jakarta.annotation.Resource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import io.jsonwebtoken.impl.Base64UrlCodec;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class OAuth2ServiceImpl implements OAuth2Service {
 
+    public enum LoginType {
+        GOOGLE,
+        KAKAO,
+        NAVER
+    }
+
     @Resource private OAuth2GoogleConfig googleConfig;
     @Resource private OAuth2KakaoConfig kakaoConfig;
     @Resource private OAuth2NaverConfig naverConfig;
+
 
 
     @Override
