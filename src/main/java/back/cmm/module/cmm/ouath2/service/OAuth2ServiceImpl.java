@@ -6,10 +6,17 @@ import back.cmm.module.cmm.ouath2.config.OAuth2NaverConfig;
 import back.cmm.module.cmm.ouath2.dto.OAuth2GoogleDto;
 import back.cmm.module.cmm.ouath2.dto.OAuth2KakaoDto;
 import back.cmm.module.cmm.ouath2.dto.OAuth2NaverDto;
+import back.cmm.module.cmm.security.dao.UserAuthorityRepository;
+import back.cmm.module.cmm.security.dao.UserRepository;
+import back.cmm.module.cmm.security.domain.AuthorityBean;
+import back.cmm.module.cmm.security.domain.UserAuthorityBean;
+import back.cmm.module.cmm.security.domain.UserAuthorityPKBean;
+import back.cmm.module.cmm.security.domain.UserBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.impl.Base64UrlCodec;
 import jakarta.annotation.Resource;
 import org.springframework.http.*;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -17,19 +24,28 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class OAuth2ServiceImpl implements OAuth2Service {
 
-    public enum LoginType {
+    public enum LOGIN_TYPE {
         GOOGLE,
         KAKAO,
         NAVER
+    }
+    public enum ROLE {
+        ROLE_USER,
+        ROLE_MANAGER,
+        ROLE_ADMIN
     }
 
     @Resource private OAuth2GoogleConfig googleConfig;
     @Resource private OAuth2KakaoConfig kakaoConfig;
     @Resource private OAuth2NaverConfig naverConfig;
+    @Resource private UserRepository userRepository;
+    @Resource private UserAuthorityRepository userAuthorityRepository;
 
 
 
@@ -55,6 +71,26 @@ public class OAuth2ServiceImpl implements OAuth2Service {
             System.out.println("$$$$$ 카카오 로그인 결과 [image] -> " + result.getBody().getKakao_account().getProfile().getProfile_image_url());
             System.out.println("$$$$$ 카카오 로그인 결과 [thumb] -> " + result.getBody().getKakao_account().getProfile().getThumbnail_image_url());
             System.out.println("$$$$$ 카카오 로그인 결과 [email] -> " + result.getBody().getKakao_account().getEmail());
+            /**/
+            Optional<UserBean> userBean = userRepository.findOneWithAuthoritiesByUsername(result.getBody().getKakao_account().getEmail());
+            if (userBean.isEmpty()) {
+                UserBean saved = userRepository.save(
+                        new UserBean(
+                                null,
+                                result.getBody().getKakao_account().getEmail(),
+                                null,
+                                result.getBody().getKakao_account().getProfile().getNickname(),
+                                "Y",
+                                null
+                        )
+                );
+                userAuthorityRepository.save(
+                        new UserAuthorityBean(
+                                new UserAuthorityPKBean(saved.getUserId(), ROLE.ROLE_USER.toString())
+                        )
+                );
+            }
+            /**/
             return ResponseEntity.ok(result);
         }
 
@@ -81,6 +117,26 @@ public class OAuth2ServiceImpl implements OAuth2Service {
             System.out.println("$$$$$ 네이버 로그인 결과 [id] -> " + result.getBody().getResponse().getId());
             System.out.println("$$$$$ 네이버 로그인 결과 [name] -> " + result.getBody().getResponse().getName());
             System.out.println("$$$$$ 네이버 로그인 결과 [profile] -> " + result.getBody().getResponse().getProfile_image());
+            /**/
+            Optional<UserBean> userBean = userRepository.findOneWithAuthoritiesByUsername(result.getBody().getResponse().getId());
+            if (userBean.isEmpty()) {
+                UserBean saved = userRepository.save(
+                        new UserBean(
+                                null,
+                                result.getBody().getResponse().getId(),
+                                null,
+                                result.getBody().getResponse().getName(),
+                                "Y",
+                                null
+                        )
+                );
+                userAuthorityRepository.save(
+                        new UserAuthorityBean(
+                                new UserAuthorityPKBean(saved.getUserId(), ROLE.ROLE_USER.toString())
+                        )
+                );
+            }
+            /**/
             return ResponseEntity.ok(result);
         }
 
@@ -121,6 +177,26 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 result.getBody().setSub(resultMap.get("sub"));
 
                 System.out.println("$$$$$ 구글 로그인 결과 [dto] -> " + result.getBody());
+                /**/
+                Optional<UserBean> userBean = userRepository.findOneWithAuthoritiesByUsername(result.getBody().getSub());
+                if (userBean.isEmpty()) {
+                    UserBean saved = userRepository.save(
+                            new UserBean(
+                                    null,
+                                    result.getBody().getSub(),
+                                    null,
+                                    result.getBody().getName(),
+                                    "Y",
+                                    null
+                            )
+                    );
+                    userAuthorityRepository.save(
+                            new UserAuthorityBean(
+                                    new UserAuthorityPKBean(saved.getUserId(), ROLE.ROLE_USER.toString())
+                            )
+                    );
+                }
+                /**/
 
             } catch (IOException e) {
                 throw new RuntimeException(e);

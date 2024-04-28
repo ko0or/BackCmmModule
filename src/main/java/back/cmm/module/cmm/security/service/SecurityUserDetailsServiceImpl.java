@@ -29,7 +29,7 @@ public class SecurityUserDetailsServiceImpl implements UserDetailsService {
    }
 
    private org.springframework.security.core.userdetails.User createUser(String username, UserBean user) {
-      if (!user.getActiveYn().equals("Y")) {
+      if (!user.getActiveYn().equals("N")) {
          throw new RuntimeException(username + " -> 활성화되어 있지 않습니다.");
       }
 
