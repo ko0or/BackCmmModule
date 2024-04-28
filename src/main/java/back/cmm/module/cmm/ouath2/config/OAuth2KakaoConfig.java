@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class OAuth2KakaoConfig {
 
-    @Value("${spring.security.oauth2.client.registration.kakao.client-id}")
+    @Value("${rest-api.oauth2.login-code.kakao.client-id}")
     private String CLIENT_ID;
 
-    @Value("${spring.security.oauth2.client.registration.kakao.redirect-uri}")
+    @Value("${rest-api.oauth2.login-code.kakao.client-id}")
+    private String CLIENT_SECRET_ID;
+
+    @Value("${rest-api.oauth2.login-code.kakao.redirect-uri}")
     private String REDIRECT_URI ;
 
     private String GRANT_TYPE = "authorization_code";

@@ -2,17 +2,8 @@ package back.cmm.module.cmm.ouath2.web;
 
 import back.cmm.module.cmm.ouath2.service.OAuth2Service;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/oauth2")
@@ -30,9 +21,9 @@ public class OAuth2Api {
         return oAuth2Service.naverLogin(accessToekn);
     }
 
-    @GetMapping("google/{accessToken}")
-    public ResponseEntity<Object> googleLogin(@PathVariable(name = "accessToken") String accessToekn) {
-        return oAuth2Service.googleLogin(accessToekn);
+    @GetMapping("google")
+    public ResponseEntity<Object> googleLogin(@RequestParam(name = "code") String code) {
+        return oAuth2Service.googleLogin(code);
     }
 
 
