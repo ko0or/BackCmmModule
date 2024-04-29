@@ -8,9 +8,11 @@ import back.cmm.module.cmm.ouath2.dto.OAuth2KakaoDto;
 import back.cmm.module.cmm.ouath2.dto.OAuth2NaverDto;
 import back.cmm.module.cmm.security.dao.UserAuthorityRepository;
 import back.cmm.module.cmm.security.dao.UserRepository;
-import back.cmm.module.cmm.security.domain.UserAuthorityBean;
-import back.cmm.module.cmm.security.domain.UserAuthorityPKBean;
+import back.cmm.module.cmm.security.domain.AuthorityBean;
 import back.cmm.module.cmm.security.domain.UserBean;
+import back.cmm.module.cmm.security.dto.LoginDto;
+import back.cmm.module.cmm.security.dto.TokenDto;
+import back.cmm.module.cmm.security.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.impl.Base64UrlCodec;
 import jakarta.annotation.Resource;
@@ -21,6 +23,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -45,10 +48,11 @@ public class OAuth2ServiceImpl implements OAuth2Service {
     @Resource private UserRepository userRepository;
     @Resource private UserAuthorityRepository userAuthorityRepository;
     @Resource private PasswordEncoder passwordEncoder;
+    @Resource private UserService userService;
 
 
     @Override
-    public ResponseEntity<Object> kakaoLogin(String accessToken) {
+    public ResponseEntity<TokenDto> kakaoLogin(String accessToken) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded;charset=utf-8");
@@ -72,6 +76,11 @@ public class OAuth2ServiceImpl implements OAuth2Service {
             /**/
             Optional<UserBean> userBean = userRepository.findOneWithAuthoritiesByUsername(result.getBody().getKakao_account().getEmail());
             if (userBean.isEmpty()) {
+
+                AuthorityBean authority = AuthorityBean.builder()
+                        .authorityName(ROLE.ROLE_USER.toString())
+                        .build();
+
                 UserBean saved = userRepository.save(
                         new UserBean(
                                 null,
@@ -80,24 +89,20 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                                 result.getBody().getKakao_account().getProfile().getNickname(),
                                 "Y",
                                 result.getBody().getKakao_account().getProfile().getProfile_image_url(),
-                                null
+                                Collections.singleton(authority)
                         )
                 );
-                userAuthorityRepository.save(
-                        new UserAuthorityBean(
-                                new UserAuthorityPKBean(saved.getUserId(), ROLE.ROLE_USER.toString())
-                        )
-                );
+                return userService.login(new LoginDto(saved.getUsername(), LOGIN_TYPE.KAKAO.toString()));
             }
             /**/
-            return ResponseEntity.ok(result);
+            return userService.login(new LoginDto(userBean.get().getUsername(), LOGIN_TYPE.KAKAO.toString()));
         }
 
-        return ResponseEntity.badRequest().body("로그인 실패");
+        return ResponseEntity.badRequest().build();
     }
 
     @Override
-    public ResponseEntity<Object> naverLogin(String accessToken) {
+    public ResponseEntity<TokenDto> naverLogin(String accessToken) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded;charset=utf-8");
         httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
@@ -119,6 +124,11 @@ public class OAuth2ServiceImpl implements OAuth2Service {
             /**/
             Optional<UserBean> userBean = userRepository.findOneWithAuthoritiesByUsername(result.getBody().getResponse().getId());
             if (userBean.isEmpty()) {
+
+                AuthorityBean authority = AuthorityBean.builder()
+                        .authorityName(ROLE.ROLE_USER.toString())
+                        .build();
+
                 UserBean saved = userRepository.save(
                         new UserBean(
                                 null,
@@ -127,24 +137,21 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                                 result.getBody().getResponse().getName(),
                                 "Y",
                                 result.getBody().getResponse().getProfile_image(),
-                                null
+                                Collections.singleton(authority)
                         )
                 );
-                userAuthorityRepository.save(
-                        new UserAuthorityBean(
-                                new UserAuthorityPKBean(saved.getUserId(), ROLE.ROLE_USER.toString())
-                        )
-                );
+
+                return userService.login(new LoginDto(saved.getUsername(), LOGIN_TYPE.NAVER.toString()));
             }
             /**/
-            return ResponseEntity.ok(result);
+            return userService.login(new LoginDto(userBean.get().getUsername(), LOGIN_TYPE.NAVER.toString()));
         }
 
-        return ResponseEntity.badRequest().body("로그인 실패");
+        return ResponseEntity.badRequest().build();
     }
 
     @Override
-    public ResponseEntity<Object> googleLogin(String code) {
+    public ResponseEntity<TokenDto> googleLogin(String code) {
 
         RestTemplate restTemplate=new RestTemplate();
         Map<String, String> params = new HashMap<>();
@@ -180,6 +187,11 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                 /**/
                 Optional<UserBean> userBean = userRepository.findOneWithAuthoritiesByUsername(result.getBody().getSub());
                 if (userBean.isEmpty()) {
+
+                    AuthorityBean authority = AuthorityBean.builder()
+                            .authorityName(ROLE.ROLE_USER.toString())
+                            .build();
+
                     UserBean saved = userRepository.save(
                             new UserBean(
                                     null,
@@ -188,25 +200,21 @@ public class OAuth2ServiceImpl implements OAuth2Service {
                                     result.getBody().getName(),
                                     "Y",
                                     result.getBody().getPicture(),
-                                    null
+                                    Collections.singleton(authority)
                             )
                     );
-                    userAuthorityRepository.save(
-                            new UserAuthorityBean(
-                                    new UserAuthorityPKBean(saved.getUserId(), ROLE.ROLE_USER.toString())
-                            )
-                    );
+
+                    return userService.login(new LoginDto(saved.getUsername(), LOGIN_TYPE.GOOGLE.toString()));
                 }
+                return userService.login(new LoginDto(userBean.get().getUsername(), LOGIN_TYPE.GOOGLE.toString()));
                 /**/
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-            return ResponseEntity.ok(result);
         }
 
-        return ResponseEntity.badRequest().body("로그인 실패");
+        return ResponseEntity.badRequest().build();
 
     }
 
