@@ -44,7 +44,7 @@ rest-api:
         client-id: 1b958d55ee701ac4832129d0dc1ae757
         client-secret: PcBSPdiVElgdYAt9tqmMvMJbjooKwl7i
         authorization-grant-type: authorization_code
-        redirect-uri: "http://localhost:8080/ouath/test"
+        redirect-uri: "http://localhost:8080/ouath/test" # 대충 해둔 상태 ( 맞지않아도 패스되고잇음 )
         scope: account_email
 
     access-token:
@@ -57,5 +57,5 @@ rest-api:
         client-id: 648648052301-9n52bears5e77ia30tmedrr6s7no1s86.apps.googleusercontent.com
         client-secret: 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
         authorization-grant-type: authorization_code
-        redirect-uri: http://localhost:3000/oauth-login/google
+        redirect-uri: http://localhost:3000/oauth2/google
         scope: profile
