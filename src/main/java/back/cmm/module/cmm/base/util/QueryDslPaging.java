@@ -19,6 +19,11 @@ public class QueryDslPaging<T> {
     private List<T> list;
     private Long totalCount;
 
+    /**
+     * 페이징 및 정렬, 그리고 Entity → Dto 매핑
+     * @param fromClazz : ~Bean 파일.class
+     * @param toClazz : ~Dto 파일.class
+     * */
     public QueryDslPaging(Pageable pageable, JPAQuery<?> query, Class<?> fromClazz, Class<?> toClazz) {
         ModelMapper mapper = new ModelMapper();
         String[] splitClassNm = fromClazz.getName().split("\\.");
