@@ -1,32 +1,34 @@
 package back.cmm.module.cmm.base.test;
 
-import back.cmm.module.cmm.base.util.MapperUtil;
-import back.cmm.module.cmm.base.util.PageResponse;
-import back.cmm.module.cmm.security.dao.UserRepository;
+import back.cmm.module.cmm.base.util.QueryDslPaging;
+import back.cmm.module.cmm.security.domain.QUserBean;
 import back.cmm.module.cmm.security.domain.UserBean;
 import back.cmm.module.cmm.security.dto.UserDto;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Slf4j
 @RestController
 @RequestMapping("/test")
 public class TestApi {
-    @Resource private UserRepository userRepository;
+    @Resource JPAQueryFactory queryFactory;
+    private final QUserBean userBean = QUserBean.userBean;
+
 
     @GetMapping
-    public PageResponse test(Pageable pageable) {
-        // http://localhost:8080/test?page=0&size=3&sort=userId,desc
-        Page<UserBean> beans = userRepository.findAll(pageable);
-        return new PageResponse(beans, UserDto.class);
-    }
+    public QueryDslPaging<UserDto> test(Pageable pageable) {
 
+        BooleanBuilder builder = new BooleanBuilder();
+        JPAQuery<UserBean> query = queryFactory.selectFrom(userBean).where(builder);
+        return new QueryDslPaging<>(pageable, query, UserBean.class, UserDto.class);
+
+    }
 }
+

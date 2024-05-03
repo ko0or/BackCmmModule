@@ -31,7 +31,7 @@ public class UserDto {
 
    private String imgLogicalNm;
 
-   private Set<AuthorityDto> authorityDtoSet;
+   private Set<AuthorityDto> authorities;
 
    public static UserDto from(UserBean user) {
       if(user == null) return null;
@@ -41,7 +41,7 @@ public class UserDto {
               .password(user.getPassword())
               .nickname(user.getNickname())
               .imgLogicalNm(user.getImgLogicalNm())
-              .authorityDtoSet(user.getAuthorities().stream()
+              .authorities(user.getAuthorities().stream()
                       .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
                       .collect(Collectors.toSet()))
               .build();
