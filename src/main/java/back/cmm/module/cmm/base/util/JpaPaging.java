@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-public class PageResponse {
+public class JpaPaging {
 
     private List<?> list;
     private long total;
 
-    public PageResponse(Page<?> page, Class<?> clazz) {
+    public JpaPaging(Page<?> page, Class<?> clazz) {
         ModelMapper mapper = new ModelMapper();
         this.list = page.stream().map(o -> mapper.map(o, clazz)).collect(Collectors.toList());
         this.total = page.getTotalElements();
