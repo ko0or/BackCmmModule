@@ -24,7 +24,7 @@ public class TestApi {
 
     @GetMapping
     public QueryDslPaging<UserDto> test(Pageable pageable) {
-
+        // api example : http://localhost:8080/test?page=1&size=2&sort=userId,desc
         BooleanBuilder builder = new BooleanBuilder();
         JPAQuery<UserBean> query = queryFactory.selectFrom(userBean).where(builder);
         return new QueryDslPaging<>(pageable, query, UserBean.class, UserDto.class);
