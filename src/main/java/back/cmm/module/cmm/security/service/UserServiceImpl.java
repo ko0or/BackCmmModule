@@ -1,5 +1,6 @@
 package back.cmm.module.cmm.security.service;
 
+import back.cmm.module.cmm.base.util.MapperUtil;
 import back.cmm.module.cmm.security.dto.LoginDto;
 import back.cmm.module.cmm.security.dto.TokenDto;
 import back.cmm.module.cmm.security.dto.UserDto;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final MapperUtil mapperUtil;
 
     public ResponseEntity<TokenDto> login(LoginDto loginDto) {
 
@@ -65,7 +67,7 @@ public class UserServiceImpl implements UserService {
                 .activeYn("Y")
                 .build();
 
-        return UserDto.from(userRepository.save(user));
+        return mapperUtil.map(userRepository.save(user), UserDto.class);
     }
 
 }

@@ -32,18 +32,4 @@ public class UserDto {
    private String imgLogicalNm;
 
    private Set<AuthorityDto> authorities;
-
-   public static UserDto from(UserBean user) {
-      if(user == null) return null;
-
-      return UserDto.builder()
-              .username(user.getUsername())
-              .password(user.getPassword())
-              .nickname(user.getNickname())
-              .imgLogicalNm(user.getImgLogicalNm())
-              .authorities(user.getAuthorities().stream()
-                      .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
-                      .collect(Collectors.toSet()))
-              .build();
-   }
 }

@@ -1,5 +1,7 @@
 package back.cmm.module.cmm.security.util;
 
+import back.cmm.module.cmm.base.util.MapperUtil;
+import back.cmm.module.cmm.security.domain.UserBean;
 import back.cmm.module.cmm.security.dto.UserDto;
 import back.cmm.module.cmm.security.exception.NotFoundMemberException;
 import back.cmm.module.cmm.security.dao.UserRepository;
@@ -25,6 +27,7 @@ import java.util.Optional;
 */
 public class SecurityUtil {
    private final UserRepository userRepository;
+   private final MapperUtil mapperUtil;
 
    public static Optional<String> getCurrentUsername() {
       final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -44,16 +47,16 @@ public class SecurityUtil {
 
    @Transactional(readOnly = true)
    public UserDto getUserDtoWithAuthorities(String username) {
-      return UserDto.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
+      UserBean userBean = userRepository.findOneWithAuthoritiesByUsername(username).orElseThrow(() -> new NotFoundMemberException("해당 사용자를 찾을 수 없습니다."));
+      return mapperUtil.map(userBean, UserDto.class);
    }
 
    @Transactional(readOnly = true)
    public UserDto getUserDtoWithAuthorities() {
-      return UserDto.from(
-              SecurityUtil.getCurrentUsername()
-                      .flatMap(userRepository::findOneWithAuthoritiesByUsername)
-                      .orElseThrow(() -> new NotFoundMemberException("Member not found"))
-      );
+      String username = SecurityUtil.getCurrentUsername().orElseThrow(() -> new NullPointerException("시큐리티 컨텍스트에 등록되어있지 않습니다."));
+      UserBean userBean = userRepository.findOneWithAuthoritiesByUsername(username).orElseThrow(() -> new NotFoundMemberException("해당 사용자를 찾을 수 없습니다."));
+      return mapperUtil.map(userBean, UserDto.class);
    }
+
 
 }
