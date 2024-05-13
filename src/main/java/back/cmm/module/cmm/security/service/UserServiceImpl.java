@@ -1,6 +1,8 @@
 package back.cmm.module.cmm.security.service;
 
 import back.cmm.module.cmm.base.util.MapperUtil;
+import back.cmm.module.cmm.base.util.QueryDslPaging;
+import back.cmm.module.cmm.security.domain.QUserBean;
 import back.cmm.module.cmm.security.dto.LoginDto;
 import back.cmm.module.cmm.security.dto.TokenDto;
 import back.cmm.module.cmm.security.dto.UserDto;
@@ -10,7 +12,12 @@ import back.cmm.module.cmm.security.exception.DuplicateMemberException;
 import back.cmm.module.cmm.security.jwt.JwtFilter;
 import back.cmm.module.cmm.security.jwt.TokenProvider;
 import back.cmm.module.cmm.security.dao.UserRepository;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +40,9 @@ public class UserServiceImpl implements UserService {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MapperUtil mapperUtil;
+
+    private final JPAQueryFactory queryFactory;
+    private final QUserBean qUserBean = QUserBean.userBean;
 
     public ResponseEntity<TokenDto> login(LoginDto loginDto) {
 
@@ -68,6 +78,13 @@ public class UserServiceImpl implements UserService {
                 .build();
 
         return mapperUtil.map(userRepository.save(user), UserDto.class);
+    }
+
+    @Override
+    public QueryDslPaging<UserDto> list(Pageable pageable) {
+        BooleanBuilder builder = new BooleanBuilder();
+        JPAQuery<UserBean> query = queryFactory.selectFrom(qUserBean).where(builder);
+        return new QueryDslPaging<>(pageable, query, UserBean.class, UserDto.class);
     }
 
 }
