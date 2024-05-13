@@ -12,4 +12,6 @@ public interface UserService {
     public UserDto signup(UserDto userDto);
 
     QueryDslPaging<UserDto> list(Pageable pageable);
+
+    ResponseEntity<UserDto> grantRoles(UserDto userDto);
 }

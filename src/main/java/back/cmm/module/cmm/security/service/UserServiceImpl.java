@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -86,5 +87,17 @@ public class UserServiceImpl implements UserService {
         JPAQuery<UserBean> query = queryFactory.selectFrom(qUserBean).where(builder);
         return new QueryDslPaging<>(pageable, query, UserBean.class, UserDto.class);
     }
+
+    @Override
+    public ResponseEntity<UserDto> grantRoles(UserDto userDto) {
+        queryFactory.update(qUserBean)
+                .set(
+                        Collections.singletonList(qUserBean.authorities),
+                        Collections.singletonList(userDto.getAuthorities())
+                ).where(qUserBean.username.eq(userDto.getUsername())).execute();
+
+        UserBean userBean = queryFactory.selectFrom(qUserBean).where(qUserBean.username.eq(userDto.getUsername())).fetchOne();
+        UserDto resultDto = mapperUtil.map(userBean, UserDto.class);
+        return ResponseEntity.ok().body(resultDto);    }
 
 }

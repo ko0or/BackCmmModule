@@ -33,7 +33,7 @@ public class UserApi {
 
     @GetMapping("{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @Operation(summary = "유저명으로 권한 조회")
+    @Operation(summary = "로그인 ID를 이용해서 권한 조회")
     public ResponseEntity<UserDto> getUser(@PathVariable(name = "username") String username) {
         return ResponseEntity.ok(securityUtil.getUserDtoWithAuthorities(username));
     }
@@ -43,6 +43,13 @@ public class UserApi {
     @Operation(summary = "모든 유저 조회")
     public QueryDslPaging<UserDto> getUsers(Pageable pageable) {
         return userService.list(pageable);
+    }
+
+    @PostMapping("grant/roles")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "로그인 ID를 이용해서 권한 부여")
+    public ResponseEntity<UserDto> grantRoles(@RequestBody UserDto userDto) {
+        return userService.grantRoles(userDto);
     }
 
 }
