@@ -26,30 +26,30 @@ public class UserApi {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    @Operation(summary = "현재 로그인된 나의 권한 조회")
+    @Operation(summary = "로그인된 나의 정보")
     public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
         return ResponseEntity.ok(securityUtil.getUserDtoWithAuthorities());
     }
 
     @GetMapping("{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @Operation(summary = "로그인 ID를 이용해서 권한 조회")
+    @Operation(summary = "가입된 유저 정보 조회", description = "운영자 기능")
     public ResponseEntity<UserDto> getUser(@PathVariable(name = "username") String username) {
         return ResponseEntity.ok(securityUtil.getUserDtoWithAuthorities(username));
     }
 
     @GetMapping("list")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @Operation(summary = "모든 유저 조회")
+    @Operation(summary = "모든 유저 조회", description = "운영자 기능")
     public QueryDslPaging<UserDto> getUsers(Pageable pageable) {
         return userService.list(pageable);
     }
 
-    @PostMapping("grant/roles")
+    @PostMapping("role")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @Operation(summary = "로그인 ID를 이용해서 권한 부여")
-    public ResponseEntity<UserDto> grantRoles(@RequestBody UserDto userDto) {
-        return userService.grantRoles(userDto);
+    @Operation(summary = "유저 권한 수정", description = "운영자 기능")
+    public ResponseEntity<UserDto> updateAuthority(@RequestBody UserDto userDto) {
+        return userService.updateAuthority(userDto);
     }
 
 }

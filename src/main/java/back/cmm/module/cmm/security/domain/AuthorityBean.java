@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 @Getter
 @Setter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorityBean {

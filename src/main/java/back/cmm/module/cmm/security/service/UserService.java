@@ -13,5 +13,5 @@ public interface UserService {
 
     QueryDslPaging<UserDto> list(Pageable pageable);
 
-    ResponseEntity<UserDto> grantRoles(UserDto userDto);
+    ResponseEntity<UserDto> updateAuthority(UserDto userDto);
 }

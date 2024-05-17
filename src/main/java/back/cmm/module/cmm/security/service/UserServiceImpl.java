@@ -2,21 +2,22 @@ package back.cmm.module.cmm.security.service;
 
 import back.cmm.module.cmm.base.util.MapperUtil;
 import back.cmm.module.cmm.base.util.QueryDslPaging;
+import back.cmm.module.cmm.security.dao.UserRepository;
+import back.cmm.module.cmm.security.domain.AuthorityBean;
 import back.cmm.module.cmm.security.domain.QUserBean;
+import back.cmm.module.cmm.security.domain.UserBean;
 import back.cmm.module.cmm.security.dto.LoginDto;
 import back.cmm.module.cmm.security.dto.TokenDto;
 import back.cmm.module.cmm.security.dto.UserDto;
-import back.cmm.module.cmm.security.domain.AuthorityBean;
-import back.cmm.module.cmm.security.domain.UserBean;
 import back.cmm.module.cmm.security.exception.DuplicateMemberException;
+import back.cmm.module.cmm.security.exception.NotFoundMemberException;
 import back.cmm.module.cmm.security.jwt.JwtFilter;
 import back.cmm.module.cmm.security.jwt.TokenProvider;
-import back.cmm.module.cmm.security.dao.UserRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,11 +31,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
-/* 로그인 및 회원가입 */
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -89,15 +92,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<UserDto> grantRoles(UserDto userDto) {
-        queryFactory.update(qUserBean)
-                .set(
-                        Collections.singletonList(qUserBean.authorities),
-                        Collections.singletonList(userDto.getAuthorities())
-                ).where(qUserBean.username.eq(userDto.getUsername())).execute();
+    @Transactional
+    public ResponseEntity<UserDto> updateAuthority(UserDto userDto) {
 
-        UserBean userBean = queryFactory.selectFrom(qUserBean).where(qUserBean.username.eq(userDto.getUsername())).fetchOne();
+        UserBean userBean = userRepository.findOneWithAuthoritiesByUsername(userDto.getUsername())
+                .orElseThrow(() -> new NotFoundMemberException("존재하지 않는 유저입니다."));
+
+        Set<AuthorityBean> authoritySet = userDto.getAuthorities().stream()
+                .map(authorityDto -> AuthorityBean.builder().authorityName(authorityDto.getAuthorityName()).build())
+                .collect(Collectors.toSet());
+        userBean.setAuthorities(authoritySet);
+
         UserDto resultDto = mapperUtil.map(userBean, UserDto.class);
-        return ResponseEntity.ok().body(resultDto);    }
+        return ResponseEntity.ok().body(resultDto);
+
+    }
 
 }
