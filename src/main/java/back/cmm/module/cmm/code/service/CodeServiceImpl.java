@@ -6,6 +6,8 @@ import back.cmm.module.cmm.code.dto.CodeListDto;
 import back.cmm.module.cmm.code.dao.CodeRepository;
 import back.cmm.module.cmm.base.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -15,6 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CodeServiceImpl implements CodeService {
+    private static final Logger log = LoggerFactory.getLogger(CodeServiceImpl.class);
     private final CodeRepository codeRepository;
     private final MapperUtil mapperUtil;
 /*
@@ -36,8 +39,11 @@ public class CodeServiceImpl implements CodeService {
 
     @Override
     public void save(CodeListDto dto) {
+        System.out.println("@#@#@# dto : ' " + dto);
         codeRepository.deleteAll();
-        codeRepository.save(mapperUtil.map(dto, CodeBean.class));
+        CodeBean mapped = mapperUtil.map(dto, CodeBean.class);
+        System.out.println("@#@#@# mapped Bean : " + mapped);
+        codeRepository.save(mapped);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class ModOnlyBean extends RegOnlyBean {
     private Date modDttm;
 
     @LastModifiedBy
-    @Column(name = "mod_id", length = 20, updatable = false)
+    @Column(name = "mod_id", length = 255, updatable = false)
     private String modId;
 
 }

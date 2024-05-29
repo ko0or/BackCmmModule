@@ -21,7 +21,7 @@ public class RegOnlyBean implements Serializable {
     private Date regDttm;
 
     @CreatedBy
-    @Column(name = "reg_id", length = 20, updatable = false)
+    @Column(name = "reg_id", length = 255, updatable = false)
     private String regId;
 
 }
