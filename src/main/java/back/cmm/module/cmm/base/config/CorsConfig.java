@@ -27,6 +27,7 @@ public class CorsConfig {
 
    private final static List<String> ALLOW_ORIGIN_LIST = new ArrayList<>(
            Arrays.asList(
+                   "https://operational-andromache-dang-coding-beea3344.koyeb.app",
                    "http://localhost:3000",
                    "http://localhost:3003"
            )
