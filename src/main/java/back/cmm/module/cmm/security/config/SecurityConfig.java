@@ -43,6 +43,7 @@ public class SecurityConfig {
             "/auth/login",
             "/auth/signup",
             "/file/**",
+            "/code/**",
 
     };
     private static final String[] PUBLIC_ALLOW_POST_LIST = {
