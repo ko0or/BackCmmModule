@@ -5,9 +5,7 @@ import back.cmm.module.cmm.board.service.BoardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +21,12 @@ public class BoardApi {
     @Operation(summary = "게시판 목록 조회")
     public List<BoardDto> getList() {
         return boardService.getList();
+    }
+
+    @PostMapping
+    @Operation(summary = "게시판 등록 및 수정")
+    public BoardDto reg(@RequestBody BoardDto boardDto) {
+        return boardService.reg(boardDto);
     }
 
 }
