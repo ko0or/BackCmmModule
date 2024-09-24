@@ -1,6 +1,7 @@
 package back.cmm.module.cmm.post.web;
 
 import back.cmm.module.cmm.post.dto.PostDto;
+import back.cmm.module.cmm.post.dto.PostFormDto;
 import back.cmm.module.cmm.post.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,8 +26,8 @@ public class PostApi {
 
     @PostMapping
     @Operation(summary = "게시글 등록 및 수정")
-    public PostDto save(@RequestBody PostDto postDto) {
-        return postService.save(postDto);
+    public PostDto save(@RequestBody PostFormDto formDto) {
+        return postService.save(formDto);
     }
 
 }

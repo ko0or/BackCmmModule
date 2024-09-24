@@ -4,6 +4,7 @@ import back.cmm.module.cmm.base.util.MapperUtil;
 import back.cmm.module.cmm.post.dao.PostRepository;
 import back.cmm.module.cmm.post.domain.PostBean;
 import back.cmm.module.cmm.post.dto.PostDto;
+import back.cmm.module.cmm.post.dto.PostFormDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto save(PostDto postDto) {
-        PostBean postBean = postRepository.save(mapperUtil.map(postDto, PostBean.class));
+    public PostDto save(PostFormDto formDto) {
+        PostBean postBean = postRepository.save(mapperUtil.map(formDto, PostBean.class));
         return mapperUtil.map(postRepository.save(postBean), PostDto.class);
     }
 

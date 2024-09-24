@@ -5,6 +5,7 @@ import back.cmm.module.cmm.board.service.BoardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class BoardApi {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "게시판 등록 및 수정")
     public BoardDto save(@RequestBody BoardDto boardDto) {
         return boardService.save(boardDto);

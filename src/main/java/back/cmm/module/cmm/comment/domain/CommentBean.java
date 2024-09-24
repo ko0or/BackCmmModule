@@ -32,12 +32,15 @@ public class CommentBean extends RegBasicBean {
     @JoinColumn(name = "reg_id", referencedColumnName = "username", insertable = false, updatable = false)
     private UserBean user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+/*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_uid", referencedColumnName = "post_uid", insertable = false, updatable = false)
-    private PostBean post;
+    private PostBean post;*/
+
+    @Column(name = "parent_cmmt_uid")
+    private Long parentCmmtUid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_cmmt_uid", referencedColumnName = "cmmt_uid")
+    @JoinColumn(name = "parent_cmmt_uid", referencedColumnName = "cmmt_uid", insertable = false, updatable = false)
     private CommentBean parent;
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true)

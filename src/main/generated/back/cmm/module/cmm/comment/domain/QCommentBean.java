@@ -41,7 +41,7 @@ public class QCommentBean extends EntityPathBase<CommentBean> {
 
     public final QCommentBean parent;
 
-    public final back.cmm.module.cmm.post.domain.QPostBean post;
+    public final NumberPath<Long> parentCmmtUid = createNumber("parentCmmtUid", Long.class);
 
     public final NumberPath<Long> postUid = createNumber("postUid", Long.class);
 
@@ -72,7 +72,6 @@ public class QCommentBean extends EntityPathBase<CommentBean> {
     public QCommentBean(Class<? extends CommentBean> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.parent = inits.isInitialized("parent") ? new QCommentBean(forProperty("parent"), inits.get("parent")) : null;
-        this.post = inits.isInitialized("post") ? new back.cmm.module.cmm.post.domain.QPostBean(forProperty("post"), inits.get("post")) : null;
         this.user = inits.isInitialized("user") ? new back.cmm.module.cmm.security.domain.QUserBean(forProperty("user")) : null;
     }
 

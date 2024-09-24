@@ -47,7 +47,8 @@ public class PostBean extends RegBasicBean {
     @JoinColumn(name = "reg_id", referencedColumnName = "username", insertable = false, updatable = false)
     private UserBean user;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_uid", referencedColumnName = "post_uid")
     private List<CommentBean> comments;
 
 }

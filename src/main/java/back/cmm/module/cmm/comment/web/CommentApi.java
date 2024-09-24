@@ -1,6 +1,7 @@
 package back.cmm.module.cmm.comment.web;
 
 import back.cmm.module.cmm.comment.dto.CommentDto;
+import back.cmm.module.cmm.comment.dto.CommentFormDto;
 import back.cmm.module.cmm.comment.service.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,8 +26,8 @@ public class CommentApi {
 
     @PostMapping
     @Operation(summary = "댓글 등록")
-    public CommentDto save(@RequestBody CommentDto commentDto) {
-        return commentService.save(commentDto);
+    public CommentDto save(@RequestBody CommentFormDto formDto) {
+        return commentService.save(formDto);
     }
 
 }
