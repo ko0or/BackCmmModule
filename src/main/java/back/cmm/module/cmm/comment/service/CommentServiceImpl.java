@@ -2,6 +2,7 @@ package back.cmm.module.cmm.comment.service;
 
 import back.cmm.module.cmm.base.util.MapperUtil;
 import back.cmm.module.cmm.comment.dao.CommentRepository;
+import back.cmm.module.cmm.comment.domain.CommentBean;
 import back.cmm.module.cmm.comment.dto.CommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,12 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentDto> getList() {
         return mapperUtil.map(commentRepository.findAll(), CommentDto.class);
+    }
+
+    @Override
+    public CommentDto save(CommentDto commentDto) {
+        CommentBean comment = commentRepository.save(mapperUtil.map(commentDto, CommentBean.class));
+        return mapperUtil.map(comment, CommentDto.class);
     }
 
 }

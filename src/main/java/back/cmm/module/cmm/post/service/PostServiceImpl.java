@@ -23,7 +23,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDto save(PostDto postDto) {
-        PostBean postBean = mapperUtil.map(postDto, PostBean.class);
+        PostBean postBean = postRepository.save(mapperUtil.map(postDto, PostBean.class));
         return mapperUtil.map(postRepository.save(postBean), PostDto.class);
     }
 
