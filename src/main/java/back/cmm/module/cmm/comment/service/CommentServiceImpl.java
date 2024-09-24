@@ -19,6 +19,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentDto> getList() {
+        // TODO : queryDSL 전환 여부,  대댓글 포함 페이징 처리 여부 .. ?
         return mapperUtil.map(commentRepository.findAllByParentCmmtUidIsNull(), CommentDto.class);
     }
 

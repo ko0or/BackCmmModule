@@ -32,6 +32,7 @@ public class CommentBean extends RegBasicBean {
     @JoinColumn(name = "reg_id", referencedColumnName = "username", insertable = false, updatable = false)
     private UserBean user;
 
+// 댓글 정보 불러올때, 해당 게시판 정보가 굳이 필요한가 .. ?
 /*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_uid", referencedColumnName = "post_uid", insertable = false, updatable = false)
     private PostBean post;*/
