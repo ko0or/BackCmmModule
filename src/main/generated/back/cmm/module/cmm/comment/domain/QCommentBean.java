@@ -24,7 +24,7 @@ public class QCommentBean extends EntityPathBase<CommentBean> {
 
     public final back.cmm.module.cmm.base.domain.QRegBasicBean _super = new back.cmm.module.cmm.base.domain.QRegBasicBean(this);
 
-    public final NumberPath<Long> boardUid = createNumber("boardUid", Long.class);
+    public final ListPath<CommentBean, QCommentBean> children = this.<CommentBean, QCommentBean>createList("children", CommentBean.class, QCommentBean.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> cmmtUid = createNumber("cmmtUid", Long.class);
 
@@ -38,6 +38,12 @@ public class QCommentBean extends EntityPathBase<CommentBean> {
 
     //inherited
     public final StringPath modId = _super.modId;
+
+    public final QCommentBean parent;
+
+    public final back.cmm.module.cmm.post.domain.QPostBean post;
+
+    public final NumberPath<Long> postUid = createNumber("postUid", Long.class);
 
     //inherited
     public final DateTimePath<java.util.Date> regDttm = _super.regDttm;
@@ -65,6 +71,8 @@ public class QCommentBean extends EntityPathBase<CommentBean> {
 
     public QCommentBean(Class<? extends CommentBean> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.parent = inits.isInitialized("parent") ? new QCommentBean(forProperty("parent"), inits.get("parent")) : null;
+        this.post = inits.isInitialized("post") ? new back.cmm.module.cmm.post.domain.QPostBean(forProperty("post"), inits.get("post")) : null;
         this.user = inits.isInitialized("user") ? new back.cmm.module.cmm.security.domain.QUserBean(forProperty("user")) : null;
     }
 

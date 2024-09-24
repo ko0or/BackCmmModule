@@ -1,12 +1,15 @@
 package back.cmm.module.cmm.comment.domain;
 
 import back.cmm.module.cmm.base.domain.RegBasicBean;
+import back.cmm.module.cmm.post.domain.PostBean;
 import back.cmm.module.cmm.security.domain.UserBean;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "`post`")
+@Table(name = "`comment`")
 @ToString
 @Getter
 @Setter
@@ -22,11 +25,22 @@ public class CommentBean extends RegBasicBean {
     @Column(name = "`content`")
     private String content;
 
-    @Column(name = "board_uid")
-    private Long boardUid;
+    @Column(name = "post_uid")
+    private Long postUid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reg_id", referencedColumnName = "username", insertable = false, updatable = false)
     private UserBean user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_uid", referencedColumnName = "post_uid", insertable = false, updatable = false)
+    private PostBean post;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_cmmt_uid", referencedColumnName = "cmmt_uid")
+    private CommentBean parent;
+
+    @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    private List<CommentBean> children;
 
 }

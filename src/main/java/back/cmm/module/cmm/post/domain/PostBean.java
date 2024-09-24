@@ -2,9 +2,13 @@ package back.cmm.module.cmm.post.domain;
 
 import back.cmm.module.cmm.base.domain.RegBasicBean;
 import back.cmm.module.cmm.board.domain.BoardBean;
+import back.cmm.module.cmm.comment.domain.CommentBean;
 import back.cmm.module.cmm.security.domain.UserBean;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Formula;
+
+import java.util.List;
 
 @Entity
 @Table(name = "`post`")
@@ -32,8 +36,8 @@ public class PostBean extends RegBasicBean {
     @Column(name = "thumb_content")
     private String thumbContent;
 
-    /*private Long boardUid;*/
-    /*private Long userUid;*/
+    @Column(name = "board_uid")
+    private Long boardUid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_uid", referencedColumnName = "board_uid", insertable = false, updatable = false)
@@ -42,5 +46,8 @@ public class PostBean extends RegBasicBean {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reg_id", referencedColumnName = "username", insertable = false, updatable = false)
     private UserBean user;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CommentBean> comments;
 
 }
