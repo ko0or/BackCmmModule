@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardDto reg(BoardDto boardDto) {
+    public BoardDto save(BoardDto boardDto) {
         BoardBean saved = boardRepository.save(mapperUtil.map(boardDto, BoardBean.class));
         return mapperUtil.map(saved, BoardDto.class);
     }

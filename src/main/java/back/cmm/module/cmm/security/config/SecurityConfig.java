@@ -45,6 +45,12 @@ public class SecurityConfig {
             "/file/**",
             "/code/**",
 
+            /* === test === */
+            "/board/**",
+            "/post/**",
+            "/comment/**",
+            /* ============ */
+
     };
     private static final String[] PUBLIC_ALLOW_POST_LIST = {
 
@@ -53,6 +59,11 @@ public class SecurityConfig {
             "/auth/signup",
             "/file/**",
 
+            /* === test === */
+            "/board/**",
+            "/post/**",
+            "/comment/**",
+            /* ============ */
     };
 
     @Bean

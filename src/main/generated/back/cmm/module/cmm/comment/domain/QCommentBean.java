@@ -24,7 +24,7 @@ public class QCommentBean extends EntityPathBase<CommentBean> {
 
     public final back.cmm.module.cmm.base.domain.QRegBasicBean _super = new back.cmm.module.cmm.base.domain.QRegBasicBean(this);
 
-    public final NumberPath<Long> cmmtGrpUid = createNumber("cmmtGrpUid", Long.class);
+    public final NumberPath<Long> boardUid = createNumber("boardUid", Long.class);
 
     public final NumberPath<Long> cmmtUid = createNumber("cmmtUid", Long.class);
 

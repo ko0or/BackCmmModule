@@ -19,11 +19,11 @@ public class CommentBean extends RegBasicBean {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cmmtUid;
 
-    @Column(name = "cmmt_grp_uid")
-    private Long cmmtGrpUid;
-
     @Column(name = "`content`")
     private String content;
+
+    @Column(name = "board_uid")
+    private Long boardUid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reg_id", referencedColumnName = "username", insertable = false, updatable = false)

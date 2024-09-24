@@ -25,8 +25,8 @@ public class BoardApi {
 
     @PostMapping
     @Operation(summary = "게시판 등록 및 수정")
-    public BoardDto reg(@RequestBody BoardDto boardDto) {
-        return boardService.reg(boardDto);
+    public BoardDto save(@RequestBody BoardDto boardDto) {
+        return boardService.save(boardDto);
     }
 
 }

@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class CommentDto {
 
     private Long cmmtUid;
-    private Long cmmtGrpUid;
     private String content;
+    private Long boardUid;
     private UserBasicDto user;
 
 }

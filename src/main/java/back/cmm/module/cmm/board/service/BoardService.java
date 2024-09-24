@@ -7,5 +7,5 @@ import java.util.List;
 public interface BoardService {
     List<BoardDto> getList();
 
-    BoardDto reg(BoardDto boardDto);
+    BoardDto save(BoardDto boardDto);
 }
