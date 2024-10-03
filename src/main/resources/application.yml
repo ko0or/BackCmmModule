@@ -1,17 +1,12 @@
 spring:
 
   profiles:
-    active: superbase
+    active: local
 
   servlet:
     multipart:
       max-file-size: 1024MB
       max-request-size: 5120MB
-
-  jpa:
-    defer-datasource-initialization: true
-    hibernate:
-      ddl-auto: update
 
 #  가장 하단 " rest-api " 으로 대체해서 사용중 ..
 #  security:

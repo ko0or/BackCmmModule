@@ -7,7 +7,9 @@ spring:
     password: kmw1871020679
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect #org.hibernate.dialect.H2Dialect
-
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
 logging:
   level:
     back.cmm.module: debug
