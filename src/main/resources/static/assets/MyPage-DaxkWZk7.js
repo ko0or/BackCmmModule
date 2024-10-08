@@ -1,0 +1,1 @@
+import{_ as a,o as s,c as t,a as c}from"./index-C7vrsHdJ.js";const n={};function o(r,e){return s(),t("section",null,e[0]||(e[0]=[c("article",{class:"inner"}," 내 정보 페이지 ",-1)]))}const l=a(n,[["render",o],["__scopeId","data-v-37a8bb59"]]);export{l as default};

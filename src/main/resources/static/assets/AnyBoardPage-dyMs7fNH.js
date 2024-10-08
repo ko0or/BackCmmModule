@@ -1,0 +1,1 @@
+/* empty css                                                                   */import{o as t,c as a,a as o}from"./index-C7vrsHdJ.js";const s={class:"container"},_={__name:"AnyBoardPage",setup(r){return(n,e)=>(t(),a("section",s,e[0]||(e[0]=[o("article",{class:"inner"}," 자유 게시판 ",-1)])))}};export{_ as default};

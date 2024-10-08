@@ -49,6 +49,10 @@ public class SecurityConfig {
             "/board/**",
             "/post/**",
             "/comment/**",
+
+            "/main/**",
+            "/assets/**",
+            "/route.json",
             /* ============ */
 
     };
@@ -63,6 +67,7 @@ public class SecurityConfig {
             "/board/**",
             "/post/**",
             "/comment/**",
+            "/code/**",
             /* ============ */
     };
 

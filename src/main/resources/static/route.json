@@ -1,0 +1,155 @@
+[
+
+        {
+            "name": null,
+            "path": null,
+            "component": null,
+            "meta": null,
+            "redirect": "/main",
+            "children": []
+        },
+
+        {
+            "name": "간편로그인",
+            "path": "/oauth2",
+            "component": null,
+            "meta": null,
+            "redirect": null,
+            "children": [
+                {
+                    "name": "네이버로그인",
+                    "path": "naver",
+                    "component": "member/OAuthLoginPage",
+                    "meta": null,
+                    "redirect": null,
+                    "children": []
+                },
+                {
+                    "name": "구글로그인",
+                    "path": "google",
+                    "component": "member/OAuthLoginPage",
+                    "meta": null,
+                    "redirect": null,
+                    "children": []
+                },
+                {
+                    "name": "카카오로그인",
+                    "path": "kakao",
+                    "component": "member/OAuthLoginPage",
+                    "meta": null,
+                    "redirect": null,
+                    "children": []
+                }
+            ]
+        },
+
+        {
+            "name": "메인",
+            "path": "/main",
+            "component": "frame/DefaultFrame",
+            "meta": null,
+            "redirect": "/main/home",
+            "children": [
+                {
+                    "name": "기본",
+                    "path": "home",
+                    "component": "cmm/MainPage",
+                    "meta": null,
+                    "redirect": null,
+                    "children": []
+                },
+                {
+                    "name": "사용자",
+                    "path": "member",
+                    "component": null,
+                    "meta": null,
+                    "redirect": null,
+                    "children": [
+                        {
+                            "name": "내 정보",
+                            "path": "info",
+                            "component": "member/MyPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "로그인",
+                            "path": "login",
+                            "component": "member/LoginPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "회원가입",
+                            "path": "sing-up",
+                            "component": "member/SignUpPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "게시판",
+                    "path": "board",
+                    "component": null,
+                    "meta": null,
+                    "redirect": "/main/board/list",
+                    "children": [
+                        {
+                            "name": "게시글 목록",
+                            "label": "게시글 목록",
+                            "path": "list",
+                            "component": "board/BoardListPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "게시글 상세",
+                            "label": "게시글 상세",
+                            "path": "detail",
+                            "component": "board/BoardDetailPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "게시글 작성",
+                            "label": "게시글 작성(test)",
+                            "path": "write",
+                            "component": "board/BoardWritePage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        }
+                    ]
+                },
+
+
+
+
+
+                {
+                    "name": "관리",
+                    "path": "mng",
+                    "component": null,
+                    "meta": null,
+                    "redirect": null,
+                    "children": [
+                        {
+                            "name": "코드 관리",
+                            "path": "code",
+                            "component": "mng/CodeMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        }
+                    ]
+                }
+
+            ]
+        }
+]
