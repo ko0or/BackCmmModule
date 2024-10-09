@@ -1,1 +1,0 @@
-import{_ as a,o as n,c as s,a as t}from"./index-C7vrsHdJ.js";const c={};function o(r,e){return n(),s("section",null,e[0]||(e[0]=[t("article",{class:"inner"}," 회원가입 페이지 ",-1)]))}const l=a(c,[["render",o],["__scopeId","data-v-d9330a06"]]);export{l as default};

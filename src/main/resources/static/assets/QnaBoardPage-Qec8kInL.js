@@ -1,1 +1,0 @@
-/* empty css                                                                   */import{o as a,c as t,a as o}from"./index-C7vrsHdJ.js";const s={class:"container"},_={__name:"QnaBoardPage",setup(r){return(n,e)=>(a(),t("section",s,e[0]||(e[0]=[o("article",{class:"inner"}," 질문 & 답변 게시판 ",-1)])))}};export{_ as default};

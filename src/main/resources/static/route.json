@@ -140,9 +140,65 @@
                     "redirect": null,
                     "children": [
                         {
+                            "name": "회원 관리",
+                            "path": "mbr",
+                            "component": "mng/MbrMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "권한 관리",
+                            "path": "auth",
+                            "component": "mng/AuthMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
                             "name": "코드 관리",
                             "path": "code",
                             "component": "mng/CodeMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "라우트 관리",
+                            "path": "route",
+                            "component": "mng/RouteMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "메뉴 관리",
+                            "path": "menu",
+                            "component": "mng/MenuMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "게시판 관리",
+                            "path": "brd",
+                            "component": "mng/BrdMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "댓글 관리",
+                            "path": "reply",
+                            "component": "mng/ReplyMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "신고 관리",
+                            "path": "report",
+                            "component": "mng/ReportMngPage",
                             "meta": null,
                             "redirect": null,
                             "children": []

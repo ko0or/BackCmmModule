@@ -1,1 +1,0 @@
-/* empty css                                                                     */import{o as t,c as a,a as s}from"./index-C7vrsHdJ.js";const o={class:"container"},_={__name:"MainPage",setup(n){return(r,e)=>(t(),a("section",o,e[0]||(e[0]=[s("article",{class:"inner"}," 메인 페이지 ",-1)])))}};export{_ as default};
