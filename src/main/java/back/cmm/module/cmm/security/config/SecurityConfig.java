@@ -39,21 +39,26 @@ public class SecurityConfig {
     };
     private static final String[] PUBLIC_ALLOW_GET_LIST = {
 
-            "/oauth2/**",
-            "/auth/login",
-            "/auth/signup",
-            "/file/**",
-            "/code/**",
+            /* front */
+            "/",
+            "/main",
+            "/index.html",
+            "/main/**",
+            "/assets/**",
+            "/route.json",
+            /* ==== */
 
             /* === test === */
             "/board/**",
             "/post/**",
             "/comment/**",
-
-            "/main/**",
-            "/assets/**",
-            "/route.json",
             /* ============ */
+
+            "/oauth2/**",
+            "/auth/login",
+            "/auth/signup",
+            "/file/**",
+            "/code/**",
 
     };
     private static final String[] PUBLIC_ALLOW_POST_LIST = {
