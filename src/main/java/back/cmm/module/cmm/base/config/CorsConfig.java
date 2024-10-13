@@ -27,7 +27,7 @@ public class CorsConfig {
 
    private final static List<String> ALLOW_ORIGIN_LIST = new ArrayList<>(
            Arrays.asList(
-                   "http://43.203.33.40",
+                   "http://43.203.33.40:12000",
                    "http://localhost:3000",
                    "http://localhost:3003"
            )
