@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:log4jdbc:postgresql://43.203.33.40:5432/dang
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    username: aws
+    password: 22911270
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    back.cmm.module: debug

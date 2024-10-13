@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "gradlew.bat build && docker build --platform linux/amd64 -t m1nwoo/dang:latest .",
+    "push": "gradlew.bat build && docker build --platform linux/amd64 -t m1nwoo/dang:latest . && docker push m1nwoo/dang:latest"
+  }
+}
