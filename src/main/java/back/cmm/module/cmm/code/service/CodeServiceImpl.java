@@ -17,7 +17,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CodeServiceImpl implements CodeService {
-    private static final Logger log = LoggerFactory.getLogger(CodeServiceImpl.class);
     private final CodeRepository codeRepository;
     private final MapperUtil mapperUtil;
 /*
