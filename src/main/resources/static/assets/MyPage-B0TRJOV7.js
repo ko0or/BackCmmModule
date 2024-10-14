@@ -1,0 +1,1 @@
+import{_ as a,c as r,a as s,o as t}from"./index-DTGUHq3f.js";const c={};function o(n,e){return t(),r("section",null,e[0]||(e[0]=[s("article",{class:"article-area"}," 내 정보 페이지 ",-1)]))}const f=a(c,[["render",o],["__scopeId","data-v-e614cff9"],["__file","C:/Users/mw/pjts/frontend/editor/src/pages/member/MyPage.vue"]]);export{f as default};

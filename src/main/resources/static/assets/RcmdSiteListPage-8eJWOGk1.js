@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as c}from"./index-DTGUHq3f.js";const s={};function r(n,o){return c(),t("p",null," 추천 사이트 목록 페이지 ")}const i=e(s,[["render",r],["__file","C:/Users/mw/pjts/frontend/editor/src/pages/info/rcmd/site/RcmdSiteListPage.vue"]]);export{i as default};
