@@ -39,6 +39,8 @@ public class SecurityConfig {
     };
     private static final String[] PUBLIC_ALLOW_GET_LIST = {
 
+            "/**",
+
             /* front */
             "/",
             "/main",
@@ -65,6 +67,8 @@ public class SecurityConfig {
 
     };
     private static final String[] PUBLIC_ALLOW_POST_LIST = {
+
+            "/**",
 
             "/oauth2/**",
             "/auth/login",
