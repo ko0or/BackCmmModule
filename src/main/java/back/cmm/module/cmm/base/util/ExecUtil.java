@@ -17,9 +17,10 @@ public class ExecUtil {
                 commands.add("cmd.exe");
                 commands.add("/c");
             } else {
+                String joinedCmd = String.join(" ", cmd);
                 commands.add("/bin/sh");
                 commands.add("-c");
-//                commands.add("sudo");
+                commands.add("sudo " + joinedCmd);  // 명령어 전체를 따옴표로 감싸서 추가
             }
             commands.addAll(Arrays.asList(cmd));
 

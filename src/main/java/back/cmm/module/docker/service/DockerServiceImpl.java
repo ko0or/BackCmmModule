@@ -21,12 +21,12 @@ public class DockerServiceImpl implements DockerService {
 
     @Override
     public Map<String, Object> images() {
-        return execUtil.execCmd("docker", "images", "--format", "{{json .}}");
+        return execUtil.execCmd("docker", "images", "--format", "'{{json .}}'");
     }
 
     @Override
     public Map<String, Object> containers() {
-        return execUtil.execCmd("docker", "ps", "-a", "--format", "{{json .}}");
+        return execUtil.execCmd("docker", "ps", "-a", "--format", "'{{json .}}'");
     }
 
     @Override
