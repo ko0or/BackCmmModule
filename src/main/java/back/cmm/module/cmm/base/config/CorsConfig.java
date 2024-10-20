@@ -29,6 +29,8 @@ public class CorsConfig {
            Arrays.asList(
                    "https://dangcoding.kro.kr",
                    "http://dangcoding.kro.kr",
+                   "http://dockermng.kro.kr",
+                   "http://dockermng.kro.kr:8080",
                    "http://43.203.33.40:8080",
                    "http://43.203.33.40:12000",
                    "http://localhost:3000",

@@ -1,6 +1,7 @@
 package back.cmm.module.docker.service;
 
 import back.cmm.module.cmm.base.util.ExecUtil;
+import back.cmm.module.docker.dto.DockerDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,54 +22,52 @@ public class DockerServiceImpl implements DockerService {
 
     @Override
     public Map<String, Object> images() {
-        return execUtil.execCmd("docker", "images", "--format", "'{{json .}}'");
+        return execUtil.execCmd("docker", "images", "--format", "\"{{json .}}\"");
     }
 
     @Override
     public Map<String, Object> containers() {
-        return execUtil.execCmd("docker", "ps", "-a", "--format", "'{{json .}}'");
+        return execUtil.execCmd("docker", "ps", "-a", "--format", "\"{{json .}}\"");
     }
 
     @Override
-    public Map<String, Object> pullImg(String imgName) {
-        return execUtil.execCmd("docker", "pull", imgName);
+    public Map<String, Object> pullImg(DockerDto dto) {
+        return execUtil.execCmd("docker", "pull", dto.getImageName());
     }
 
     @Override
-    public Map<String, Object> run(String containerName, int etrPort, int itrPort, String imageName) {
-        return execUtil.execCmd("docker", "run", "-d", "--name", containerName, "-p", etrPort + ":" + itrPort, imageName);
+    public Map<String, Object> run(DockerDto dto) {
+        return execUtil.execCmd("docker", "run", "-d", "--name", dto.getContainerName(), "-p", dto.getEtrPort() + ":" + dto.getItrPort(), dto.getImageName());
     }
 
     @Override
-    public Map<String, Object> start(String containerName) {
-        return execUtil.execCmd("docker", "start", containerName);
+    public Map<String, Object> start(DockerDto dto) {
+        return execUtil.execCmd("docker", "start", dto.getContainerName());
     }
 
     @Override
-    public Map<String, Object> stop(String containerName) {
-        return execUtil.execCmd("docker", "stop", containerName);
+    public Map<String, Object> stop(DockerDto dto) {
+        return execUtil.execCmd("docker", "stop", dto.getContainerName());
     }
 
     @Override
-    public Map<String, Object> rmContainer(String containerName, Boolean force) {
-        return force ? execUtil.execCmd("docker", "rm", "-f", containerName)
-                : execUtil.execCmd("docker", "rm", containerName);
+    public Map<String, Object> rmContainer(DockerDto dto, Boolean force) {
+        return force ? execUtil.execCmd("docker", "rm", "-f", dto.getContainerName())
+                : execUtil.execCmd("docker", "rm", dto.getContainerName());
     }
 
     @Override
-    public Map<String, Object> rmImg(String imageName, Boolean force) {
-        return force ? execUtil.execCmd("docker", "rmi", "-f", imageName)
-                : execUtil.execCmd("docker", "rmi", imageName);
+    public Map<String, Object> rmImg(DockerDto dto, Boolean force) {
+        return force ? execUtil.execCmd("docker", "rmi", "-f", dto.getImageName())
+                : execUtil.execCmd("docker", "rmi", dto.getImageName());
     }
 
     @Override
-    public Map<String, Object> deploy(String containerName, int etrPort, int itrPort, String imageName) {
-
-        rmContainer(containerName, true);
-        rmImg(imageName, true);
-        pullImg(imageName);
-        return run(containerName, etrPort, itrPort, imageName);
-
+    public Map<String, Object> deploy(DockerDto dto) {
+        rmContainer(dto, true);
+        rmImg(dto, true);
+        pullImg(dto);
+        return run(dto);
     }
 
 }
