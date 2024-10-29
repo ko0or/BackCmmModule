@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:log4jdbc:postgresql://43.203.33.40:5432/dang
+    url: jdbc:log4jdbc:postgresql://dev-mw.tplinkdns.com:5432/dang
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     username: aws
     password: 22911270
