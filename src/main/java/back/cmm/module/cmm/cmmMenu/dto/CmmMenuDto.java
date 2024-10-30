@@ -19,7 +19,6 @@ public class CmmMenuDto {
     private String menuDes;
     private Integer menuOrd;
     private String uprMenuId;
-    private CmmMenuDto parent;
     private CmmRouteDto route;
     private String useYn;
 

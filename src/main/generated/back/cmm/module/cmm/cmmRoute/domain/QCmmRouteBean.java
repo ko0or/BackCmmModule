@@ -24,6 +24,8 @@ public class QCmmRouteBean extends EntityPathBase<CmmRouteBean> {
 
     public final back.cmm.module.cmm.base.domain.QRegBasicBean _super = new back.cmm.module.cmm.base.domain.QRegBasicBean(this);
 
+    public final ListPath<CmmRouteBean, QCmmRouteBean> children = this.<CmmRouteBean, QCmmRouteBean>createList("children", CmmRouteBean.class, QCmmRouteBean.class, PathInits.DIRECT2);
+
     public final StringPath component = createString("component");
 
     //inherited
@@ -46,8 +48,6 @@ public class QCmmRouteBean extends EntityPathBase<CmmRouteBean> {
 
     //inherited
     public final StringPath regId = _super.regId;
-
-    public final ListPath<CmmRouteBean, QCmmRouteBean> route = this.<CmmRouteBean, QCmmRouteBean>createList("route", CmmRouteBean.class, QCmmRouteBean.class, PathInits.DIRECT2);
 
     public final StringPath routeDes = createString("routeDes");
 
