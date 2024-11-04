@@ -129,8 +129,89 @@
                 },
 
 
+                {
+                    "name": "관련정보",
+                    "path": "info",
+                    "component": null,
+                    "meta": null,
+                    "redirect": "/main/info/qna",
+                    "children": [
+                        {
+                            "name": "자주하는 질문",
+                            "path": "qna",
+                            "component": "info/qna/QnAPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "추천 라이브러리",
+                            "path": "lib",
+                            "component": "info/rcmd/lib/RcmdLibListPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "추천 사이트",
+                            "path": "site",
+                            "component": "info/rcmd/site/RcmdSiteListPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "사이트 정보",
+                            "path": "qna",
+                            "component": "info/SiteInfoPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        }
+                    ]
+                },
 
-
+                {
+                    "name": "강의소개",
+                    "path": "edu",
+                    "component": null,
+                    "meta": null,
+                    "redirect": null,
+                    "children": [
+                        {
+                            "name": "프론트",
+                            "path": "fe",
+                            "component": "edu/fe/EduFeListPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "백엔드",
+                            "path": "be",
+                            "component": "edu/be/EduBeListPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "SQL",
+                            "path": "fe",
+                            "component": "edu/sql/EduSqlListPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        },
+                        {
+                            "name": "기타",
+                            "path": "fe",
+                            "component": "edu/etc/EduEtcListPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        }
+                    ]
+                },
 
                 {
                     "name": "관리",
