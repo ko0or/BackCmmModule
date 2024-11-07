@@ -76,7 +76,7 @@
                         {
                             "name": "로그인",
                             "path": "login",
-                            "component": "member/LoginPage",
+                            "component": "member/LoginPage2",
                             "meta": null,
                             "redirect": null,
                             "children": []
