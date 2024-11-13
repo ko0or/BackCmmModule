@@ -1,0 +1,1 @@
+import{_ as o,l as a,o as s,m as c,p as n,a as l}from"./index-DjHCyUli.js";const r={};function _(f,e){const t=a("LayoutSection");return s(),c(t,{title:"자주하는 질문",class:"flex flex-col"},{default:n(()=>e[0]||(e[0]=[l("article",{class:"article-area"},null,-1)])),_:1})}const p=o(r,[["render",_]]);export{p as default};

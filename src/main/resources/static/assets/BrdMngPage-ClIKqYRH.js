@@ -1,0 +1,1 @@
+import{_ as o,l as a,o as n,m as r,p as s,a as c}from"./index-DjHCyUli.js";const l={};function _(i,e){const t=a("LayoutSection");return n(),r(t,{title:"게시판 관리"},{default:s(()=>e[0]||(e[0]=[c("article",{class:"article-area"}," 준비중입니다 ",-1)])),_:1})}const p=o(l,[["render",_]]);export{p as default};

@@ -1,0 +1,1 @@
+import{_ as o,l as a,o as s,m as c,p as n,a as l}from"./index-DjHCyUli.js";const r={};function f(i,e){const t=a("LayoutSection");return s(),c(t,{title:"사이트 정보",class:"flex flex-col"},{default:n(()=>e[0]||(e[0]=[l("article",{class:"article-area"},null,-1)])),_:1})}const p=o(r,[["render",f]]);export{p as default};

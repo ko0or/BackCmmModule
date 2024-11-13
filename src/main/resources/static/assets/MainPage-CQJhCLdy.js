@@ -1,0 +1,1 @@
+/* empty css                                                                     */import{r as e,o as t,m as r,p as s,D as i,a as l}from"./index-DjHCyUli.js";const p={__name:"MainPage",setup(o){return e(!1),(c,a)=>(t(),r(i,{title:"메인 페이지","title-visible":!0},{default:s(()=>a[0]||(a[0]=[l("article",{class:"article-area"}," 메인 페이지입니다 ",-1)])),_:1}))}};export{p as default};

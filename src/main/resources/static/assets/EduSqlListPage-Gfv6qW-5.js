@@ -1,0 +1,1 @@
+import{_ as o,l as a,o as s,m as c,p as l,a as n}from"./index-DjHCyUli.js";const r={};function i(_,e){const t=a("LayoutSection");return s(),c(t,{title:"SQL 강의",class:"flex flex-col"},{default:l(()=>e[0]||(e[0]=[n("article",{class:"article-area"},null,-1)])),_:1})}const u=o(r,[["render",i]]);export{u as default};
