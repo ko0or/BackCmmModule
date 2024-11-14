@@ -27,15 +27,21 @@ public class CorsConfig {
 
    private final static List<String> ALLOW_ORIGIN_LIST = new ArrayList<>(
            Arrays.asList(
-                   "https://dangcoding.kro.kr",
+
                    "http://dangcoding.kro.kr",
+                   "https://dangcoding.kro.kr",
+
                    "http://dockermng.kro.kr",
                    "https://dockermng.kro.kr",
                    "http://dockermng.kro.kr:8080",
+                   "https://dockermng.kro.kr",
+
                    "http://43.203.33.40:8080",
                    "http://43.203.33.40:12000",
+
                    "http://localhost:3000",
                    "http://localhost:3003"
+
            )
    );
    private final static List<String> ALLOW_HEADER_LIST = new ArrayList<>(
