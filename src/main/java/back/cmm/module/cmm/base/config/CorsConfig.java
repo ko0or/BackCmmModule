@@ -34,13 +34,8 @@ public class CorsConfig {
                    "http://dockermng.kro.kr",
                    "https://dockermng.kro.kr",
                    "http://dockermng.kro.kr:8080",
-                   "https://dockermng.kro.kr",
 
-                   "http://43.203.33.40:8080",
-                   "http://43.203.33.40:12000",
-
-                   "http://localhost:3000",
-                   "http://localhost:3003"
+                   "http://localhost:3000"
 
            )
    );

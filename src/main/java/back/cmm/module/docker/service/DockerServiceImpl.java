@@ -32,7 +32,9 @@ public class DockerServiceImpl implements DockerService {
 
     @Override
     public Map<String, Object> pullImg(DockerDto dto) {
-        return execUtil.execCmd("docker", "pull", dto.getImageName());
+//        return execUtil.execCmd("docker login -u m1nwoo --password-stdin < docker-token.txt", "&&", "docker", "pull", dto.getImageName());
+        return execUtil.execCmd("docker login -u m1nwoo --password-stdin < docker-token.txt && docker pull " + dto.getImageName());
+
     }
 
     @Override
