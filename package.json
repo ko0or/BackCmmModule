@@ -1,5 +1,6 @@
 {
   "scripts": {
-    "docker": "gradlew.bat build && docker build --platform linux/amd64 -t m1nwoo/dang:latest . && docker push m1nwoo/dang:latest"
+    "docker": "gradlew.bat build && docker build --platform linux/amd64 -t m1nwoo/dang:latest . && docker push m1nwoo/dang:latest",
+    "init-api" : "apiBuilder.bat"
   }
 }
