@@ -1,6 +1,7 @@
 {
   "scripts": {
     "docker": "gradlew.bat build && docker build --platform linux/amd64 -t m1nwoo/dang:latest . && docker push m1nwoo/dang:latest",
-    "dms" : "gradlew.bat build && cd ./build/libs/ && del sb-dms.jar && ren studyJwt2-0.0.1-SNAPSHOT.jar sb-dms.jar &&  explorer ."
+    "dms" : "gradlew.bat build && cd ./build/libs/ && del sb-dms.jar && ren studyJwt2-0.0.1-SNAPSHOT.jar sb-dms.jar &&  explorer .",
+    "init-api" : "apiBuilder.bat"
   }
 }
