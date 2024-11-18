@@ -1,0 +1,12 @@
+package @PACKAGE@.@CAMEL@.dao;
+
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.annotation.Resource;
+import @PACKAGE@.cmm.base.util.MapperUtil;
+
+public class @PASCAL@RepositoryCustomImpl implements @PASCAL@RepositoryCustom {
+    
+    @Resource private JPAQueryFactory query;
+    @Resource private MapperUtil mapperUtil;
+
+}

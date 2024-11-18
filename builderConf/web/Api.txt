@@ -1,0 +1,22 @@
+package @PACKAGE@.@CAMEL@.web;
+
+import @PACKAGE@.@CAMEL@.dto.@PASCAL@Dto;
+import @PACKAGE@.@CAMEL@.service.@PASCAL@Service;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import jakarta.annotation.Resource;
+
+@Tag(name = "@TAG_NM@")
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("@URL_MAPPING@")
+public class @PASCAL@Api {
+
+    @Resource private @PASCAL@Service @CAMEL@Service;
+
+
+}

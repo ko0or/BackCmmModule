@@ -1,0 +1,23 @@
+package @PACKAGE@.@CAMEL@.service;
+
+import @PACKAGE@.cmm.base.util.MapperUtil;
+import @PACKAGE@.@CAMEL@.dao.@PASCAL@Repository;
+import @PACKAGE@.@CAMEL@.domain.@PASCAL@Bean;
+import @PACKAGE@.@CAMEL@.dto.@PASCAL@Dto;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import jakarta.annotation.Resource;
+import java.util.List;
+
+
+@Service
+public class @PASCAL@ServiceImpl implements @PASCAL@Service {
+
+    @Resource private @PASCAL@Repository @CAMEL@Repository;
+    @Resource private MapperUtil mapperUtil;
+
+
+
+}

@@ -1,0 +1,19 @@
+package @PACKAGE@.@CAMEL@.domain;
+
+import @PACKAGE@.cmm.base.domain.RegBasicBean;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "@TB_NM@")
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class @PASCAL@Bean extends RegBasicBean {
+
+    @Id
+    @Column(name = "uid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long uid;
+
+}

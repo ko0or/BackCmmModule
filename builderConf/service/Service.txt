@@ -1,0 +1,9 @@
+package @PACKAGE@.@CAMEL@.service;
+
+import @PACKAGE@.@CAMEL@.dto.@PASCAL@Dto;
+
+import java.util.List;
+
+public interface @PASCAL@Service {
+
+}
