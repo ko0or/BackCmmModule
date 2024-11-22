@@ -40,14 +40,12 @@ public class ExecUtil {
             while ((line = reader.readLine()) != null) {
 
                 String lines = Arrays.toString(line.split(System.lineSeparator()));
-//                System.out.println("lines : " + lines);
                 String[] lineSplit = line.split(System.lineSeparator());
                 ArrayList<String> strings = new ArrayList<>();
 
                 for (String s : lineSplit) {
                     Object[] array = Arrays.stream(s.split("  ")).filter((ss) -> !ss.isEmpty()).toArray();
                     for (Object o : array) {
-//                        System.out.println("o : " + o.toString().trim());
                         strings.add(o.toString().trim());
                     }
                 }
@@ -55,7 +53,6 @@ public class ExecUtil {
                 result.put(rowNum++, strings);
                 output.append(line).append(System.lineSeparator());
             }
-//            System.out.println("result : " + result.toString());
 
             Map<String, Object> realResult = new HashMap<>();
             realResult.put("string", output.toString());
