@@ -39,7 +39,7 @@ public class DockerServiceImpl implements DockerService {
 
     @Override
     public Map<String, Object> run(DockerDto dto) {
-        return execUtil.execCmd("docker", "run", "-d", "--name", dto.getContainerName(), "-p", dto.getEtrPort() + ":" + dto.getItrPort(), dto.getImageName());
+        return execUtil.execCmd("docker", "run", "-d", "--name", dto.getContainerName(), "-p", dto.getEtrPort() + ":" + dto.getItrPort() + " " + dto.getImageName());
     }
 
     @Override
