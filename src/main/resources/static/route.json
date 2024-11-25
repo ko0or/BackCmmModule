@@ -50,6 +50,7 @@
             "meta": null,
             "redirect": "/main/home",
             "children": [
+
                 {
                     "name": "기본",
                     "path": "home",
@@ -58,107 +59,94 @@
                     "redirect": null,
                     "children": []
                 },
-                {
-                    "name": "사용자",
-                    "path": "member",
-                    "component": null,
-                    "meta": null,
-                    "redirect": null,
-                    "children": [
-                        {
-                            "name": "내 정보",
-                            "path": "info",
-                            "component": "member/MyPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        },
-                        {
-                            "name": "로그인",
-                            "path": "login",
-                            "component": "member/LoginPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        },
-                        {
-                            "name": "회원가입",
-                            "path": "sing-up",
-                            "component": "member/SignUpPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "name": "게시판",
-                    "path": "board",
-                    "component": null,
-                    "meta": null,
-                    "redirect": "/main/board/list",
-                    "children": [
-                        {
-                            "name": "게시글 목록",
-                            "label": "게시글 목록",
-                            "path": "list",
-                            "component": "board/BoardListPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        },
-                        {
-                            "name": "게시글 상세",
-                            "label": "게시글 상세",
-                            "path": "detail",
-                            "component": "board/BoardDetailPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        },
-                        {
-                            "name": "게시글 작성",
-                            "label": "게시글 작성(test)",
-                            "path": "write",
-                            "component": "board/BoardWritePage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        }
-                    ]
-                },
-
-
-
-
 
                 {
                     "name": "관리",
                     "path": "mng",
                     "component": null,
                     "meta": null,
-                    "redirect": null,
+                    "redirect": "/main/mng/pjt-mng",
                     "children": [
                         {
-                            "name": "회원 관리",
-                            "path": "mbr",
-                            "component": "mng/MbrMngPage",
+                            "name": "프로젝트 관리",
+                            "label": "프로젝트 관리",
+                            "path": "pjt-mng",
+                            "component": "project/ProjectMngPage",
                             "meta": null,
                             "redirect": null,
                             "children": []
                         },
                         {
-                            "name": "권한 관리",
-                            "path": "auth",
-                            "component": "mng/AuthMngPage",
+                            "name": "도커 관리",
+                            "label": "도커 관리",
+                            "path": "docker-mng",
+                            "component": "docker/DockerMngPage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": [
+                                {
+                                    "name": "컨테이너 관리",
+                                    "label": "컨테이너 관리",
+                                    "path": "ctn-mng",
+                                    "component": "docker/DockerCtnMngPage",
+                                    "meta": null,
+                                    "redirect": null,
+                                    "children": []
+                                },
+                                {
+                                    "name": "이미지 관리",
+                                    "label": "이미지 관리",
+                                    "path": "img-mng",
+                                    "component": "docker/DockerImgMngPage",
+                                    "meta": null,
+                                    "redirect": null,
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+
+                {
+                    "name": "정보",
+                    "path": "info",
+                    "component": null,
+                    "meta": null,
+                    "redirect": "/main/note",
+                    "children": [
+                        {
+                            "name": "메모장",
+                            "label": "메모장",
+                            "path": "note",
+                            "component": "note/NoteMngPage",
                             "meta": null,
                             "redirect": null,
                             "children": []
                         },
                         {
-                            "name": "코드 관리",
-                            "path": "code",
-                            "component": "mng/CodeMngPage",
+                            "name": "자료실",
+                            "label": "자료실",
+                            "path": "file",
+                            "component": "file/FilePage",
+                            "meta": null,
+                            "redirect": null,
+                            "children": []
+                        }
+                    ]
+                },
+
+                {
+                    "name": "설정",
+                    "path": "conf",
+                    "component": null,
+                    "meta": null,
+                    "redirect": "/main/conf/menu",
+                    "children": [
+
+                        {
+                            "name": "메뉴 관리",
+                            "path": "menu",
+                            "component": "mng/MenuMngPage",
                             "meta": null,
                             "redirect": null,
                             "children": []
@@ -170,39 +158,8 @@
                             "meta": null,
                             "redirect": null,
                             "children": []
-                        },
-                        {
-                            "name": "메뉴 관리",
-                            "path": "menu",
-                            "component": "mng/MenuMngPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        },
-                        {
-                            "name": "게시판 관리",
-                            "path": "brd",
-                            "component": "mng/BrdMngPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        },
-                        {
-                            "name": "댓글 관리",
-                            "path": "reply",
-                            "component": "mng/ReplyMngPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
-                        },
-                        {
-                            "name": "신고 관리",
-                            "path": "report",
-                            "component": "mng/ReportMngPage",
-                            "meta": null,
-                            "redirect": null,
-                            "children": []
                         }
+
                     ]
                 }
 
