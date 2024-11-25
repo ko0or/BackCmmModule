@@ -10,6 +10,15 @@
         },
 
         {
+            "name": "로그인",
+            "path": "/login",
+            "component": "member/LoginPage",
+            "meta": null,
+            "redirect": null,
+            "children": []
+        },
+
+        {
             "name": "간편로그인",
             "path": "/oauth2",
             "component": null,
