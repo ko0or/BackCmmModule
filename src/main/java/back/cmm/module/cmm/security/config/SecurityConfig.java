@@ -41,14 +41,16 @@ public class SecurityConfig {
 
             "/",
             "/main",
-            "/main/login",
+            "/main/**",
             "/assets/**",
+            "/login",
+            "/index.html",
+
             "/auth/login",
             "/auth/signup",
             "/route.json",
             "/file/**",
             "/code/**",
-            "/index.html",
 
 
     };
