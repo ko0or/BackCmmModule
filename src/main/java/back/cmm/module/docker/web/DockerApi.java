@@ -18,7 +18,7 @@ public class DockerApi {
     private final DockerService dockerService;
 
     @Operation(summary = "프로젝트 배포")
-    @GetMapping("deploy")
+    @PostMapping("deploy")
     public Map<String, Object> deploy(@RequestBody DockerDto dto) {
         return dockerService.deploy(dto);
     }
