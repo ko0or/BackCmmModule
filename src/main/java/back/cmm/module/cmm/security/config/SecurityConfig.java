@@ -40,6 +40,7 @@ public class SecurityConfig {
     private static final String[] PUBLIC_ALLOW_GET_LIST = {
 
             "/",
+            "/route",
             "/main",
             "/main/**",
             "/assets/**",
