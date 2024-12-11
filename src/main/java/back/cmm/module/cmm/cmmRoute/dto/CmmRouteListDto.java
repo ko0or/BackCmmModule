@@ -20,7 +20,6 @@ public class CmmRouteListDto {
     private String routePath;
     private String redirectPath;
     private String component;
-    private CmmRouteDto parent;
     private List<CmmRouteListDto> children;
     private List<CmmMenuDto> menu;
     private String useYn;
