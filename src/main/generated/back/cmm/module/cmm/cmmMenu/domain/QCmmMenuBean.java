@@ -51,8 +51,6 @@ public class QCmmMenuBean extends EntityPathBase<CmmMenuBean> {
     //inherited
     public final StringPath regId = _super.regId;
 
-    public final back.cmm.module.cmm.cmmRoute.domain.QCmmRouteBean route;
-
     public final StringPath routeId = createString("routeId");
 
     public final StringPath uprMenuId = createString("uprMenuId");
@@ -78,7 +76,6 @@ public class QCmmMenuBean extends EntityPathBase<CmmMenuBean> {
     public QCmmMenuBean(Class<? extends CmmMenuBean> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.parent = inits.isInitialized("parent") ? new QCmmMenuBean(forProperty("parent"), inits.get("parent")) : null;
-        this.route = inits.isInitialized("route") ? new back.cmm.module.cmm.cmmRoute.domain.QCmmRouteBean(forProperty("route"), inits.get("route")) : null;
     }
 
 }

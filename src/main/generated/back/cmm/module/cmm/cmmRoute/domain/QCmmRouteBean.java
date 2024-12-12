@@ -31,8 +31,6 @@ public class QCmmRouteBean extends EntityPathBase<CmmRouteBean> {
     //inherited
     public final StringPath delYn = _super.delYn;
 
-    public final ListPath<back.cmm.module.cmm.cmmMenu.domain.CmmMenuBean, back.cmm.module.cmm.cmmMenu.domain.QCmmMenuBean> menu = this.<back.cmm.module.cmm.cmmMenu.domain.CmmMenuBean, back.cmm.module.cmm.cmmMenu.domain.QCmmMenuBean>createList("menu", back.cmm.module.cmm.cmmMenu.domain.CmmMenuBean.class, back.cmm.module.cmm.cmmMenu.domain.QCmmMenuBean.class, PathInits.DIRECT2);
-
     //inherited
     public final DateTimePath<java.util.Date> modDttm = _super.modDttm;
 

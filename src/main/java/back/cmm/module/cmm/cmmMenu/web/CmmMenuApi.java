@@ -38,7 +38,7 @@ public class CmmMenuApi {
 
     @PostMapping
     @Operation(summary = "코드 저장")
-    public void save(@Valid @RequestBody CmmMenuListDto dto) {
+    public void save(@RequestBody CmmMenuListDto dto) {
         cmmMenuService.save(dto);
     }
 

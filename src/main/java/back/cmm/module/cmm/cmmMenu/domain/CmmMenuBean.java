@@ -42,9 +42,9 @@ public class CmmMenuBean extends RegBasicBean {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<CmmMenuBean> children;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "route_id", referencedColumnName = "route_id", insertable = false, updatable = false)
-    private CmmRouteBean route;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "route_id", referencedColumnName = "route_id", insertable = false, updatable = false)
+//    private CmmRouteBean route;
 
     @Column(name = "use_yn")
     private String useYn = "Y"; // 기본값 설정

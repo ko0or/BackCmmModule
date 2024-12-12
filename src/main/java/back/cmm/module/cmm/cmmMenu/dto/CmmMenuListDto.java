@@ -18,7 +18,8 @@ public class CmmMenuListDto {
     private Integer menuOrd;
     private String uprMenuId;
     private List<CmmMenuListDto> children;
-    private CmmRouteDto route;
+    private String routeId;
+//    private CmmRouteDto route;
     private String useYn;
 
 }

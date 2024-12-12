@@ -51,7 +51,7 @@ public class CmmRouteBean extends RegBasicBean {
     @Column(name = "use_yn")
     private String useYn = "Y"; // 기본값 설정
 
-    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
-    private List<CmmMenuBean> menu;
+//    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
+//    private List<CmmMenuBean> menu;
 
 }
