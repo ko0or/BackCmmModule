@@ -5,6 +5,7 @@ import back.cmm.module.cmm.cmmMenu.dao.CmmMenuRepository;
 import back.cmm.module.cmm.cmmMenu.domain.CmmMenuBean;
 import back.cmm.module.cmm.cmmMenu.dto.CmmMenuDto;
 import back.cmm.module.cmm.cmmMenu.dto.CmmMenuListDto;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ public class CmmMenuServiceImpl implements  CmmMenuService {
     }
 
     @Override
+    @Transactional
     public void save(CmmMenuListDto dto) {
         System.out.println("@#@#@# dto : ' " + dto);
         cmmMenuRepository.deleteAll();

@@ -5,6 +5,7 @@ import back.cmm.module.cmm.cmmRoute.dao.CmmRouteRepository;
 import back.cmm.module.cmm.cmmRoute.domain.CmmRouteBean;
 import back.cmm.module.cmm.cmmRoute.dto.CmmRouteDto;
 import back.cmm.module.cmm.cmmRoute.dto.CmmRouteListDto;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ public class CmmRouteServiceImpl implements CmmRouteService {
     }
 
     @Override
+    @Transactional
     public void save(CmmRouteListDto dto) {
         System.out.println("@#@#@# dto : ' " + dto);
         cmmRouteRepository.deleteAll();
