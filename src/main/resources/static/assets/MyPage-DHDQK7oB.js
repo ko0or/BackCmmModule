@@ -1,0 +1,1 @@
+import{_ as a,o as t,c,a as r}from"./index-Ci8QPfqx.js";const s={};function o(n,e){return t(),c("section",null,e[0]||(e[0]=[r("article",{class:"article-area"}," 내 정보 페이지 ",-1)]))}const _=a(s,[["render",o],["__scopeId","data-v-86092476"]]);export{_ as default};
