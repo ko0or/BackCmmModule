@@ -14,6 +14,6 @@ public class CodeDto {
     private String cdDes;
     private Integer cdOrd;
     private String uprCdId;
-    private String activeYn;
+    private String useYn;
 
 }

@@ -16,7 +16,7 @@ public class CodeListDto {
     private String cdDes;
     private Integer cdOrd;
     private String uprCdId;
-    private String activeYn;
+    private String useYn;
     private List<CodeListDto> children;
 
 }

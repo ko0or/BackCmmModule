@@ -16,6 +16,7 @@ public class CmmMenuListDto {
     private String menuNm;
     private String menuDes;
     private Integer menuOrd;
+    private String menuIcon;
     private String uprMenuId;
     private List<CmmMenuListDto> children;
     private String routeId;

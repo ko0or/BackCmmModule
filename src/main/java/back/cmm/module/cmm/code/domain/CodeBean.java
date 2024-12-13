@@ -38,7 +38,7 @@ public class CodeBean extends RegBasicBean {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<CodeBean> children;
 
-    @Column(name = "active_yn")
-    private String activeYn = "Y"; // 기본값 설정
+    @Column(name = "use_yn")
+    private String useYn = "Y"; // 기본값 설정
 
 }

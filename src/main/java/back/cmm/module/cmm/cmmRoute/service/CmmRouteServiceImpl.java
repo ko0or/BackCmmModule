@@ -34,10 +34,8 @@ public class CmmRouteServiceImpl implements CmmRouteService {
     @Override
     @Transactional
     public void save(CmmRouteListDto dto) {
-        System.out.println("@#@#@# dto : ' " + dto);
         cmmRouteRepository.deleteAll();
         CmmRouteBean mapped = mapperUtil.map(dto, CmmRouteBean.class);
-        System.out.println("@#@#@# mapped Bean : " + mapped);
         cmmRouteRepository.save(mapped);
     }
 

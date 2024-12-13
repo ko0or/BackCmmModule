@@ -34,10 +34,8 @@ public class CmmMenuServiceImpl implements  CmmMenuService {
     @Override
     @Transactional
     public void save(CmmMenuListDto dto) {
-        System.out.println("@#@#@# dto : ' " + dto);
         cmmMenuRepository.deleteAll();
         CmmMenuBean mapped = mapperUtil.map(dto, CmmMenuBean.class);
-        System.out.println("@#@#@# mapped Bean : " + mapped);
         cmmMenuRepository.save(mapped);
     }
 

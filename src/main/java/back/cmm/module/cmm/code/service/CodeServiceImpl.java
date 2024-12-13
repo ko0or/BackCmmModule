@@ -19,10 +19,6 @@ import java.util.List;
 public class CodeServiceImpl implements CodeService {
     private final CodeRepository codeRepository;
     private final MapperUtil mapperUtil;
-/*
-    private final QFileBean file = QFileBean.fileBean;
-    private final QueryFactory queryFactory;
-*/
 
 
     @Override
@@ -38,10 +34,8 @@ public class CodeServiceImpl implements CodeService {
 
     @Override
     public void save(CodeListDto dto) {
-        System.out.println("@#@#@# dto : ' " + dto);
         codeRepository.deleteAll();
         CodeBean mapped = mapperUtil.map(dto, CodeBean.class);
-        System.out.println("@#@#@# mapped Bean : " + mapped);
         codeRepository.save(mapped);
     }
 
