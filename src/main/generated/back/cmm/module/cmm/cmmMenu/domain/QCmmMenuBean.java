@@ -31,6 +31,8 @@ public class QCmmMenuBean extends EntityPathBase<CmmMenuBean> {
 
     public final StringPath menuDes = createString("menuDes");
 
+    public final StringPath menuIcon = createString("menuIcon");
+
     public final StringPath menuId = createString("menuId");
 
     public final StringPath menuNm = createString("menuNm");

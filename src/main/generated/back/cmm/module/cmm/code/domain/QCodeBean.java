@@ -24,8 +24,6 @@ public class QCodeBean extends EntityPathBase<CodeBean> {
 
     public final back.cmm.module.cmm.base.domain.QRegBasicBean _super = new back.cmm.module.cmm.base.domain.QRegBasicBean(this);
 
-    public final StringPath activeYn = createString("activeYn");
-
     public final StringPath cdDes = createString("cdDes");
 
     public final StringPath cdId = createString("cdId");
@@ -54,6 +52,8 @@ public class QCodeBean extends EntityPathBase<CodeBean> {
     public final StringPath regId = _super.regId;
 
     public final StringPath uprCdId = createString("uprCdId");
+
+    public final StringPath useYn = createString("useYn");
 
     public QCodeBean(String variable) {
         this(CodeBean.class, forVariable(variable), INITS);
