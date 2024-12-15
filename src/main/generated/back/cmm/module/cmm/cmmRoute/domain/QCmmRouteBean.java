@@ -53,7 +53,7 @@ public class QCmmRouteBean extends EntityPathBase<CmmRouteBean> {
 
     public final StringPath routeNm = createString("routeNm");
 
-    public final NumberPath<Integer> routeOrd = createNumber("routeOrd", Integer.class);
+    public final StringPath routeParam = createString("routeParam");
 
     public final StringPath routePath = createString("routePath");
 

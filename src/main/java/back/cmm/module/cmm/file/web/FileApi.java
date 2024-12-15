@@ -47,8 +47,8 @@ public class FileApi {
     @Operation(summary = "파일 업로드")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile[] files)  {
         try {
-            fileService.save(files);
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            String savedPath = fileService.save(files);
+            return new ResponseEntity<>(savedPath, HttpStatus.OK);
         } catch (IOException e) { // IOException 처리
             return new ResponseEntity<>("파일 업로드 중 오류가 발생했습니다: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
