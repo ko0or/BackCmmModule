@@ -1,1 +1,0 @@
-import{s as o,o as t,c as s,i as c}from"./index-CDs80BcL.js";const r={class:"section-area"},p={__name:"DockerMngPage",setup(n){return(a,_)=>{const e=o("router-view");return t(),s("section",r,[c(e)])}}};export{p as default};
