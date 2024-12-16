@@ -36,11 +36,11 @@ public class PostBean extends RegBasicBean {
     @Column(name = "thumb_content")
     private String thumbContent;
 
-    @Column(name = "board_uid")
-    private Long boardUid;
+    @Column(name = "board_id")
+    private String boardId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_uid", referencedColumnName = "board_uid", insertable = false, updatable = false)
+    @JoinColumn(name = "board_id", referencedColumnName = "board_id", insertable = false, updatable = false)
     private BoardBean board;
 
     @ManyToOne(fetch = FetchType.LAZY)

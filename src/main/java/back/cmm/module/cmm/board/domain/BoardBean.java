@@ -13,26 +13,26 @@ import lombok.*;
 public class BoardBean {
 
     @Id
-    @Column(name = "board_uid")
+    @Column(name = "board_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long boardUid;
+    private String boardId;
 
     @Column(name = "board_nm")
     private String boardNm;
 
-    @Column(name = "board_description")
-    private String boardDescription;
+    @Column(name = "board_des")
+    private String boardDes;
 
-    @Column(name = "use_comment_yn", length = 1)
-    private char useCommentYn;
+    @Column(name = "cmmt_use_yn", length = 1)
+    private char cmmtUseYn;
 
-    @Column(name = "use_recommend_yn", length = 1)
-    private char useRecommendYn;
+    @Column(name = "rcmd_use_yn", length = 1)
+    private char rcmdUseYn;
 
-    @Column(name = "use_report_yn", length = 1)
-    private char useReportYn;
+    @Column(name = "reportUseYn", length = 1)
+    private char reportUseYn;
 
-    @Column(name = "use_board_yn", length = 1)
-    private char useBoardYn;
+    @Column(name = "board_use_yn", length = 1)
+    private char boardUseYn;
 
 }

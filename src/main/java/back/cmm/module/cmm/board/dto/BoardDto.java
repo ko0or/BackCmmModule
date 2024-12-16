@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BoardDto {
 
-    private Long boardUid;
+    private String boardId;
     private String boardNm;
-    private String boardDescription;
-    private char useCommentYn;
-    private char useRecommendYn;
-    private char useReportYn;
-    private char useBoardYn;
+    private String boardDes;
+    private char cmmtUseYn;
+    private char rcmdUseYn;
+    private char reportUseYn;
+    private char boardUseYn;
 
 }

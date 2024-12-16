@@ -26,7 +26,7 @@ public class QPostBean extends EntityPathBase<PostBean> {
 
     public final back.cmm.module.cmm.board.domain.QBoardBean board;
 
-    public final NumberPath<Long> boardUid = createNumber("boardUid", Long.class);
+    public final StringPath boardId = createString("boardId");
 
     public final ListPath<back.cmm.module.cmm.comment.domain.CommentBean, back.cmm.module.cmm.comment.domain.QCommentBean> comments = this.<back.cmm.module.cmm.comment.domain.CommentBean, back.cmm.module.cmm.comment.domain.QCommentBean>createList("comments", back.cmm.module.cmm.comment.domain.CommentBean.class, back.cmm.module.cmm.comment.domain.QCommentBean.class, PathInits.DIRECT2);
 

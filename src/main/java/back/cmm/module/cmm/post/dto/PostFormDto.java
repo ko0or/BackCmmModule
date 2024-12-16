@@ -16,6 +16,6 @@ public class PostFormDto extends RegBasicDto {
     private String content;
     private String thumbImg;
     private String thumbContent;
-    private Long boardUid;
+    private String boardId;
 
 }

@@ -19,19 +19,19 @@ public class QBoardBean extends EntityPathBase<BoardBean> {
 
     public static final QBoardBean boardBean = new QBoardBean("boardBean");
 
-    public final StringPath boardDescription = createString("boardDescription");
+    public final StringPath boardDes = createString("boardDes");
+
+    public final StringPath boardId = createString("boardId");
 
     public final StringPath boardNm = createString("boardNm");
 
-    public final NumberPath<Long> boardUid = createNumber("boardUid", Long.class);
+    public final ComparablePath<Character> boardUseYn = createComparable("boardUseYn", Character.class);
 
-    public final ComparablePath<Character> useBoardYn = createComparable("useBoardYn", Character.class);
+    public final ComparablePath<Character> cmmtUseYn = createComparable("cmmtUseYn", Character.class);
 
-    public final ComparablePath<Character> useCommentYn = createComparable("useCommentYn", Character.class);
+    public final ComparablePath<Character> rcmdUseYn = createComparable("rcmdUseYn", Character.class);
 
-    public final ComparablePath<Character> useRecommendYn = createComparable("useRecommendYn", Character.class);
-
-    public final ComparablePath<Character> useReportYn = createComparable("useReportYn", Character.class);
+    public final ComparablePath<Character> reportUseYn = createComparable("reportUseYn", Character.class);
 
     public QBoardBean(String variable) {
         super(BoardBean.class, forVariable(variable));

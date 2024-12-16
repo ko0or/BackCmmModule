@@ -16,7 +16,7 @@ public class PostDto {
     private String content;
     private String thumbImg;
     private String thumbContent;
-    private Long boardUid;
+    private String boardId;
     private BoardDto board;
     private UserBasicDto user;
     private List<CommentDto> comments;
