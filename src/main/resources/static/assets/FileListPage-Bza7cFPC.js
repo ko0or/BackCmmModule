@@ -1,0 +1,1 @@
+import{b as t,m as o,u as i,k as r,o as c,c as n,a}from"./index-BrMHVjQo.js";const u={class:"section-area"},m={__name:"FileListPage",setup(l){t(()=>{s()}),o("axios"),i(),r();const s=()=>{};return(_,e)=>(c(),n("section",u,e[0]||(e[0]=[a("article",{class:"article-area"},[a("div",{id:"editor"})],-1)])))}};export{m as default};
