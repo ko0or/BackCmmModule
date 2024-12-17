@@ -9,7 +9,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 logging:
   level:
     back.cmm.module: debug

@@ -1,11 +1,15 @@
 package back.cmm.module.cmm.base.util;
 
+import back.cmm.module.cmm.post.domain.PostBean;
+import back.cmm.module.cmm.post.dto.PostDto;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.core.util.StringUtils;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.Getter;
+import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,10 +18,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@Setter
 public class QueryDslPaging<T> {
 
     private List<T> list;
     private Long totalCount;
+    private Long totalPages;
 
     /**
      * 페이징 및 정렬, 그리고 Entity → Dto 매핑
@@ -38,6 +44,11 @@ public class QueryDslPaging<T> {
         List<?> fetch = query.offset(pageable.getOffset()).limit(pageable.getPageSize()).fetch();
         this.list = (List<T>) fetch.stream().map((bean)-> mapper.map(bean, toClazz)).collect(Collectors.toList());
         this.totalCount = query.fetchCount();
+        this.totalPages = (long) Math.ceil((float) this.totalCount / (float) pageable.getPageSize());
+    }
+
+    public QueryDslPaging() {
+
     }
 
 }

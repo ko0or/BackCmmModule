@@ -27,7 +27,7 @@ public class PostBean extends RegBasicBean {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "`content`")
+    @Column(name = "`content`", columnDefinition = "text")
     private String content;
 
     @Column(name = "thumb_img")
