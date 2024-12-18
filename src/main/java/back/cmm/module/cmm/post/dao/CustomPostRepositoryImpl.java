@@ -42,6 +42,18 @@ public class CustomPostRepositoryImpl implements CustomPostRepository {
         if (StringUtils.isNotEmpty(dto.getBoardId())) {
             builder.and(postBean.boardId.eq(dto.getBoardId()));
         }
+        if (StringUtils.isNotEmpty(dto.getType()) && StringUtils.isNotEmpty(dto.getKeyword())) {
+            switch (dto.getType()) {
+                case "title":
+                    builder.and(postBean.title.contains(dto.getKeyword()));
+                    break;
+                case "content":
+                    builder.and(postBean.content.contains(dto.getKeyword()));
+                    break;
+                default:
+                    builder.and(postBean.title.contains(dto.getKeyword()).or(postBean.content.contains(dto.getKeyword())));
+            }
+        }
 
         QBean<PostDto> fields = Projections.fields(PostDto.class,
                 postBean.postUid,

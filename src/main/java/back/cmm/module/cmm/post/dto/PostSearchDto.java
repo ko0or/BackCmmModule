@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class PostSearchDto {
 
+    private String type;
     private String keyword;
 
     private String title;
