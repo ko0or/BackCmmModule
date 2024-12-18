@@ -15,7 +15,6 @@ public class CmmRouteListDto {
     private String routeId;
     private String routeNm;
     private String routeDes;
-    private String routeParam;
     private String uprRouteId;
     private String routePath;
     private String redirectPath;

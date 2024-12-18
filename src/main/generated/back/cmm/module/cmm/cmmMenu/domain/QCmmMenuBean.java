@@ -55,6 +55,8 @@ public class QCmmMenuBean extends EntityPathBase<CmmMenuBean> {
 
     public final StringPath routeId = createString("routeId");
 
+    public final StringPath routeParam = createString("routeParam");
+
     public final StringPath uprMenuId = createString("uprMenuId");
 
     public final StringPath useYn = createString("useYn");

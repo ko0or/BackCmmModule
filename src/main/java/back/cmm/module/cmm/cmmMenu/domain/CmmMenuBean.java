@@ -35,6 +35,9 @@ public class CmmMenuBean extends RegBasicBean {
     @Column(name = "route_id", length = 10)
     private String routeId;
 
+    @Column(name = "route_param")
+    private String routeParam;
+
     @Column(name = "menU_icon")
     private String menuIcon;
 

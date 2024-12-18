@@ -21,6 +21,7 @@ public class CmmMenuDto {
     private String menuIcon;
     private String uprMenuId;
     private String routeId;
+    private String routeParam;
     private CmmRouteDto route;
     private String useYn;
 

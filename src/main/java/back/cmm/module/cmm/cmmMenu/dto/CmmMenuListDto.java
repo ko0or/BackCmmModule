@@ -20,6 +20,7 @@ public class CmmMenuListDto {
     private String uprMenuId;
     private List<CmmMenuListDto> children;
     private String routeId;
+    private String routeParam;
 //    private CmmRouteDto route;
     private String useYn;
 

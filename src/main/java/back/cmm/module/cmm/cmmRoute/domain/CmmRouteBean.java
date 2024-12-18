@@ -26,9 +26,6 @@ public class CmmRouteBean extends RegBasicBean {
     @Column(name = "route_des", length = 255)
     private String routeDes;
 
-    @Column(name = "route_param")
-    private String routeParam;
-
     @Column(name = "upr_route_id")
     private String uprRouteId;
 
