@@ -1,0 +1,1 @@
+import{o as a,c as s,a as t}from"./index-CAI6GlsR.js";const o={class:"section-area"},i={__name:"MainPage",setup(r){return(c,e)=>(a(),s("section",o,e[0]||(e[0]=[t("article",{class:"article-area"}," 메인페이지 ",-1)])))}};export{i as default};

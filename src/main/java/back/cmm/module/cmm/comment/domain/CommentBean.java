@@ -44,7 +44,7 @@ public class CommentBean extends RegBasicBean {
     @JoinColumn(name = "parent_cmmt_uid", referencedColumnName = "cmmt_uid", insertable = false, updatable = false)
     private CommentBean parent;
 
-    @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    @OneToMany(mappedBy = "parent")
     private List<CommentBean> children;
 
 }

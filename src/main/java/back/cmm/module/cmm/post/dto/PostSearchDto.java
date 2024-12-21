@@ -16,6 +16,7 @@ public class PostSearchDto {
     private String title;
     private String content;
     private String boardId;
+    private String postUid;
     private String userId;
 
 }

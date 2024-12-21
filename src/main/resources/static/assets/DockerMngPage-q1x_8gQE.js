@@ -1,0 +1,1 @@
+import{f as o,o as t,c,h as r}from"./index-CAI6GlsR.js";const s={class:"section-area"},i={__name:"DockerMngPage",setup(n){return(a,_)=>{const e=o("router-view");return t(),c("section",s,[r(e)])}}};export{i as default};
