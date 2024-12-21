@@ -1,1 +1,0 @@
-import{b as t,i as o,u as i,d as r,o as c,c as n,a}from"./index-COchMYI4.js";const u={class:"section-area"},p={__name:"FileListPage",setup(l){t(()=>{s()}),o("axios"),i(),r();const s=()=>{};return(d,e)=>(c(),n("section",u,e[0]||(e[0]=[a("article",{class:"article-area"},[a("div",{id:"editor"})],-1)])))}};export{p as default};

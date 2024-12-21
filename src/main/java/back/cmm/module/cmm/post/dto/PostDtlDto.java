@@ -23,4 +23,7 @@ public class PostDtlDto extends RegBasicDto {
     private UserBasicDto user;
     private List<CommentDto> comments;
 
+    private PostNavDto prevPost;
+    private PostNavDto nextPost;
+
 }

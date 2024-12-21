@@ -38,7 +38,9 @@ public class PostServiceImpl implements PostService {
     @SneakyThrows
     public PostDtlDto detail(Long postUid) {
         PostBean postBean = postRepository.findById(postUid).orElseThrow(() -> new Exception("해당 게시글 정보를 찾을 수 없습니다"));
-        return mapperUtil.map(postBean, PostDtlDto.class);
+        PostDtlDto postDtlDto = mapperUtil.map(postBean, PostDtlDto.class);
+        postRepository.getSiblingPost(postDtlDto);
+        return postDtlDto;
     }
 
 }

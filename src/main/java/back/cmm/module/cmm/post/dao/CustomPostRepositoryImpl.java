@@ -6,7 +6,9 @@ import back.cmm.module.cmm.board.domain.QBoardBean;
 import back.cmm.module.cmm.comment.domain.QCommentBean;
 import back.cmm.module.cmm.post.domain.PostBean;
 import back.cmm.module.cmm.post.domain.QPostBean;
+import back.cmm.module.cmm.post.dto.PostDtlDto;
 import back.cmm.module.cmm.post.dto.PostDto;
+import back.cmm.module.cmm.post.dto.PostNavDto;
 import back.cmm.module.cmm.post.dto.PostSearchDto;
 import back.cmm.module.cmm.security.domain.QUserBean;
 import com.querydsl.core.BooleanBuilder;
@@ -86,6 +88,45 @@ public class CustomPostRepositoryImpl implements CustomPostRepository {
         paging.setTotalPages((long) Math.ceil((float) paging.getTotalCount() / (float) pageable.getPageSize()));
 
         return paging;
+    }
+
+    public void getSiblingPost(PostDtlDto postDtlDto) {
+
+        QBean<PostNavDto> fields = Projections.fields(PostNavDto.class, postBean.postUid, postBean.title);
+
+        /* 공통 조건: 삭제 여부와 게시판 ID */
+        BooleanBuilder dtlCmmBuilder = new BooleanBuilder();
+        dtlCmmBuilder.and(postBean.delYn.ne("Y"));
+        dtlCmmBuilder.and(postBean.boardId.eq(postDtlDto.getBoardId()));
+
+        /* 이전 게시글 조건 */
+        BooleanBuilder prevBuilder = new BooleanBuilder(dtlCmmBuilder);
+        prevBuilder.and(postBean.postUid.lt(postDtlDto.getPostUid()));
+
+        /* 다음 게시글 조건 */
+        BooleanBuilder nextBuilder = new BooleanBuilder(dtlCmmBuilder);
+        nextBuilder.and(postBean.postUid.gt(postDtlDto.getPostUid()));
+
+        /* 이전 게시글 조회 */
+        PostNavDto prevPostDto = query.select(fields)
+                .limit(1)
+                .from(postBean)
+                .where(prevBuilder)
+                .orderBy(postBean.postUid.desc()) // 내림차순으로 가장 가까운 이전 글
+                .fetchOne();
+
+        /* 다음 게시글 조회 */
+        PostNavDto nextPostDto = query.select(fields)
+                .limit(1)
+                .from(postBean)
+                .where(nextBuilder)
+                .orderBy(postBean.postUid.asc()) // 오름차순으로 가장 가까운 다음 글
+                .fetchOne();
+
+        /* 결과 매핑 */
+        postDtlDto.setPrevPost(prevPostDto);
+        postDtlDto.setNextPost(nextPostDto);
+
     }
 
 }
