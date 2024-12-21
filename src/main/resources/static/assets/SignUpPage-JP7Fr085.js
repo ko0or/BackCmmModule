@@ -1,0 +1,1 @@
+import{_ as a,b as t,c,d as r}from"./index-DFO3MUi4.js";const s={};function n(o,e){return t(),c("section",null,e[0]||(e[0]=[r("article",{class:"article-area"}," 회원가입 페이지 ",-1)]))}const l=a(s,[["render",n],["__scopeId","data-v-d7def8b0"]]);export{l as default};

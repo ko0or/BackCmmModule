@@ -1,0 +1,1 @@
+import{b as a,c as s,d as t}from"./index-DFO3MUi4.js";const r={class:"section-area"},i={__name:"MainPage",setup(c){return(o,e)=>(a(),s("section",r,e[0]||(e[0]=[t("article",{class:"article-area"}," 메인페이지 ",-1)])))}};export{i as default};

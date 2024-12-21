@@ -1,0 +1,1 @@
+import{_ as a,b as s,c,d as e}from"./index-DFO3MUi4.js";const r={},o={class:"section-area"};function n(i,t){return s(),c("section",o,t[0]||(t[0]=[e("article",{class:"article-area"},[e("p",{class:"section-title"}," 게시판 관리 "),e("div",{style:{height:"5px",background:"black",width:"50px",margin:".5em auto 2.5rem auto"}})],-1)]))}const d=a(r,[["render",n]]);export{d as default};
